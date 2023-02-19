@@ -1,17 +1,70 @@
 /// @description generate deck
-generate_player_deck(); 
+///generate_player_deck(); 
 
 // Print the contents of the card database
-show_debug_message("Card Database:");
-card_list = ds_map_find_first(card_db);
-while (card_list != -1) {
-    card_name = ds_map_find_first(card_list);
-    show_debug_message(card_name + ":");
-    card_attributes = ds_map_find_value(card_list,"monster");
-    card_attribute = ds_map_find_first(card_attributes);
-    while (card_attribute != -1) {
-        show_debug_message("    " + card_attribute + ": " + ds_map_find_value(card_attributes, card_attribute));
-        card_attribute = ds_map_find_next(card_attributes, card_attribute);
-    }
-    card_list = ds_map_find_next(card_db, card_list);
+
+
+//Generate deck using structs and arrays
+
+enum card_state
+{
+	in_hand,
+	in_deck,
+	destroyed	
 }
+
+monster_cards = {
+	monster_strong: {
+		card_type: "monster",
+		name: "Strong monster",
+		attack: 2,
+		defense: 2,
+		state: card_state.in_deck
+	},
+	monster_mid: {
+		card_type: "monster",
+		name: "Mid monster",
+		attack: 1,
+		defense: 1,
+		state: card_state.in_deck
+	},
+	monster_weak: {
+		card_type: "monster",
+		name: "Weak monster",
+		attack: 0,
+		defense: 1,
+		state: card_state.in_deck
+	},
+	empty_slot: {
+		card_type: "empty",
+	}
+}
+
+
+//create a database using the above cards
+your_deck = array_create(20, 0);
+your_deck = [
+	monster_cards.monster_weak, 
+	monster_cards.monster_weak, 
+	monster_cards.monster_weak, 
+	monster_cards.monster_weak, 
+	monster_cards.monster_weak, 
+	monster_cards.monster_mid,
+	monster_cards.monster_mid,
+	monster_cards.monster_mid,
+	monster_cards.monster_strong,
+	monster_cards.monster_strong
+]
+
+//create a hand using the above cards
+your_hand = array_create(5, 0);
+
+//draw 3 cards from the deck //pick_a_card() -
+your_hand = 
+[
+	your_deck[0],
+	your_deck[7],
+	your_deck[9]
+]
+
+//when picking a card, set the status and color in the deck to red. 
