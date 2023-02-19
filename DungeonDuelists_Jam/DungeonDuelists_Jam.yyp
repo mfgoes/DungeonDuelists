@@ -33,6 +33,7 @@
   },
   "resources": [
     {"id":{"name":"card","path":"sprites/card/card.yy",},"order":0,},
+    {"id":{"name":"DeckGeneration","path":"scripts/DeckGeneration/DeckGeneration.yy",},"order":0,},
     {"id":{"name":"tile_bgr","path":"sprites/tile_bgr/tile_bgr.yy",},"order":0,},
     {"id":{"name":"oMonsterEnemy","path":"objects/oMonsterEnemy/oMonsterEnemy.yy",},"order":0,},
     {"id":{"name":"oGame","path":"objects/oGame/oGame.yy",},"order":0,},
