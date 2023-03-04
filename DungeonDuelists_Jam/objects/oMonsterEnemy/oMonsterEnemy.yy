@@ -26,8 +26,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "monster",
-    "path": "sprites/monster/monster.yy",
+    "name": "monster_enemy",
+    "path": "sprites/monster_enemy/monster_enemy.yy",
   },
   "spriteMaskId": null,
   "visible": true,
