@@ -1,58 +1,51 @@
 /// @description generate deck
 
 ///global variables
-global.TEXT_RES = 2; //text resolution (may change in settings later)
-#macro TILESIZE 16
-enum card_state
-{
-	in_hand,
-	in_deck, 
-	on_field,
-	destroyed	
-}
-
-if (live_call()) return live_result;
-
-#region generate deck
-	card_set = array_create_ext(10, function() { return new Monster_weak();});
-
-	//generate 4 strong cards
-	for (var h = 0; h < 4; h++) {
-		with (card_set[h]) {
-			Monster_strong();
-		}
+#region essential variables
+	global.TEXT_RES = 2; //text resolution (may change in settings later)
+	global.debugmode = true; 
+	#macro TILESIZE 16
+	enum card_state
+	{
+		in_hand,
+		in_deck, 
+		on_field,
+		destroyed	
 	}
+	//Setup game states
+	turn_to_play = 0; //player. 1 = AI. 
+	player_HP = 3; HP_max = 3; 
+	opponent_HP = 3; HP_max_opponent = 3; 
+	RES = global.TEXT_RES; 
 
-	//generate 2 mid cards
-	for (var h = 4; h < 6; h++) {
-		with (card_set[h]) {
-			Monster_mid();
-		}
-	}
-
-	deck_shuffle(); 
 #endregion
 
-
-//GENERATE HAND FROM DECK STRUCTS
-hand_set = array_create(3,0);
-for (var h = 0; h < array_length(hand_set); h++) {
-	Start_from_deck(h); //picks 3 first cards and makes them "in hand" 
-	draw_hand_objects(h); 
-}
-
-//GENERATE CARD SLOTS ON BOARD 
- //set 'in slot' variable + x positions
-card_slots = array_create(3,0);
-for (var h = 0; h < array_length(card_slots); h++) {
-	card_slots[h,1] = 22 + h*34; 
-}
-
-
-//Setup game states
-turn_to_play = 0; //player. 1 = AI. 
-
+if (live_call()) return live_result;
+#region player setup
+	Deck_Init();
+	
+#endregion
 
 //GENERATE ENEMY CARDS
-spawn_cards_enemy();
+#region opponent setup
+	deck_init_opponent(5); 
+	deck_shuffle(opponent_card_set); 
+	hand_init_opponent(3); //picks 3 cards from the opponent deck
+	init_card_slots_opponent();
+	spawn_cards_enemy(2); //draw_hand_objects (rename this)
+#endregion 
 
+
+
+//player turn 
+//draw player card if possible
+//play player cards if possible
+//'attack (end turn)
+
+//enemy turn
+//draw card if possible 
+//spawn cards if possible
+//'attack' (end turn) 
+
+//if extra damage left, damage player/opponent. 
+//if 0 HP left: win / lose scenario

@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "spawn_cards_enemy",
+  "name": "Enemy_AI",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
