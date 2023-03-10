@@ -61,8 +61,11 @@ if (global.debugmode) {
 	{
 		_y2 = _y + 20 + 20* i;
 		var str1 = "__ ";
+		var _item = opponent_card_set[i];
 		if opponent_card_set[i].state = card_state.in_hand str1 = "hand - ";	
 		if opponent_card_set[i].state = card_state.in_deck str1 = "deck - ";	
+		if opponent_card_set[i].state = card_state.on_field str1 = "field - ";
+		if opponent_card_set[i].state = card_state.destroyed str1 = "graveyard - ";
 		draw_text(_x,_y2,str1 + string(_item.name) + ", atk: " + string(_item.attack)); 
 	
 	}
@@ -76,27 +79,26 @@ if (global.debugmode) {
 
 
 
-
 //draw turns
-draw_set_halign(fa_center);
-draw_set_font(fnt_Bold);
-var str = "_" 
-var _x = room_width*RES / 2;
-var _y = 10*RES; 
-var m = 50; 
-if turn_to_play = 0 {
-	str = "Player turn"; 
-	var m = lerp(m,40,0.4); 
-}
-else {
-	str = "Opponents turn"; 
-	var m =  lerp(m,80,0.4); 
-}
-draw_text(_x,_y,str);
+if winner = 0 {
+	draw_set_halign(fa_center);
+	draw_set_font(fnt_Bold);
+	var str = "_" 
+	var _x = room_width*RES / 2;
+	var _y = 10*RES; 
+	if turn_to_play = 0 {
+		str = "Player turn"; 
+		m = lerp(m,40,0.2); 
+	}
+	else {
+		str = "Opponents turn"; 
+		m =  lerp(m,50,0.2); 
+	}
+	draw_text(_x,_y,str);
 
-draw_rectangle(_x-m,_y+20,_x+m,_y+21,0);
-//draw_sprite_ext(button_primary_empty,0,_x,_y+8,RES,RES,0,c_white,1);
-
+	draw_rectangle(_x-m,_y+20,_x+m,_y+21,0);
+	//draw_sprite_ext(button_primary_empty,0,_x,_y+8,RES,RES,0,c_white,1);
+}
 //reset
 draw_set_font(fnt_BodyRegular);
 

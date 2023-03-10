@@ -11,17 +11,16 @@ function deck_init_opponent(argument0) {
 	//generate 3 weak cards 
 	for (var h = 0; h < 3; h++) {
 		with (opponent_card_set[h]) {
-			Monster_weak();
+			Monster_strong();
 		}
 	}
-	//generate 2 mid cards 
-	for (var h = 3; h < 5; h++) {
-		with (opponent_card_set[h]) {
-			Monster_mid();
-		}
-	}
-	
-	
+	////generate 2 mid cards 
+	//for (var h = 3; h < 5; h++) {
+	//	with (opponent_card_set[h]) {
+	//		Monster_mid();
+	//	}
+	//}
+
 }
 
 /// @desc generate hand from deck
@@ -32,9 +31,7 @@ function hand_init_opponent(argument0) {
 	for (var h = 0; h < array_length(opponent_hand_set); h++) {
 		opponent_hand_set[h] = opponent_card_set[h];
 		opponent_card_set[h].state = card_state.in_hand; 
-	}
-	
-	
+	}	
 }
 
 
@@ -42,23 +39,17 @@ function hand_init_opponent(argument0) {
 function init_card_slots_opponent() {
 	 //to do: make this dynamic so it can be used by both opponent and player functions
 	card_slots_opponent = array_create(3,0);
-	//var _x = 222; if instance_exists(oStageEnemy) _x = oStageEnemy.x+4; 
-	//var _y = 100; if instance_exists(oStageEnemy) _y = oStageEnemy.y-10; 
-	
-	//for (var h = 0; h < array_length(card_slots_opponent); h++) {
-	//	card_slots_opponent[h,1] = 222 + h*34; 
-	//}
 }
 
 /// this will become a lot more complex later
 //// @desc spawn cards for enemy
 /// @param {real} amount 
-function spawn_cards_enemy(argument0){
+function spawn_cards_enemy_start(argument0){
 
-	var amount = argument0; if argument0 = -1 amount = 0; 
-	
+	var amount = argument0;
 	var _y = oStageEnemy.y - 10; 
-	var spawn_slot = 1; 
+	var spawn_slot = 0; 
+	var card_number = 0; //deck ID
 	//check if slot is free (in array), then spawn in free spot.
 	//spawn an enemy in an empty spot on the board
 	
@@ -80,8 +71,10 @@ function spawn_cards_enemy(argument0){
 			_x += 34*2; 
 		}
 		else spawn_slot = 0; //show text: cannot spawn 
-		instance_create_depth(_x,_y,depth-20,oMonsterEnemy); //spawns the first two cards
-		 
+		dd = instance_create_depth(_x,_y,depth-20,oMonsterEnemy); //spawns the first two cards
+		opponent_card_set[card_number].state = card_state.on_field; 
+		dd.card_number = card_number; //card identifier, so that it knows which deck card to retrieve. 
+		card_number+=1; 
 	}
 }
 

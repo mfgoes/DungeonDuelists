@@ -2,27 +2,18 @@
 
 if (live_call()) return live_result;
 
-
 //show text
-switch btn_type {
+switch oConstructorTest.winner {
 		case (0): {
-			text = "destroy card";
+			text = "Game Over";
 		}
 		break;
 		case (1): {
-			text = "end turn";
+			text = "You Win!";
 		}
 		break;
 		case (2): {
-			text = "attack";
-		}
-		break;
-		case (3): {
-			text = "restart";
-		}
-		break;
-		case (4): {
-			text = "next level";
+			text = "You Lost...";
 		}
 		break;
 }

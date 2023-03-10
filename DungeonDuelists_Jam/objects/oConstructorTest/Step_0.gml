@@ -20,3 +20,10 @@
 		global.debugmode = !global.debugmode; 
 	}
 #endregion
+
+
+
+//check who's turn it is
+
+//check win condition
+check_win_condition(); 

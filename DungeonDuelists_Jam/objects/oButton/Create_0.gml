@@ -5,8 +5,10 @@ btn_alpha = 1;
 
 
 /*
+btn_type
 0: destroy card
 1: end turn
-2: shuffle deck
+2: attack (if possible)
 3: restart
+4: next level
 */

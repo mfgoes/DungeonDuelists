@@ -13,7 +13,7 @@ function Monster_strong() : Monster_card() constructor {
 	card_type = "monster"
 	name =  "Strong Monster"
 	attack = 2
-	defense = 2
+	defense = 4
 }
 
 function Monster_weak()  : Monster_card() constructor {
