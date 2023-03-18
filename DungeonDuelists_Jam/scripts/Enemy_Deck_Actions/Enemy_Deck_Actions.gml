@@ -11,7 +11,7 @@ function deck_init_opponent(argument0) {
 	//generate 3 weak cards 
 	for (var h = 0; h < 3; h++) {
 		with (opponent_card_set[h]) {
-			Monster_strong();
+			Monster_weak();
 		}
 	}
 	////generate 2 mid cards 

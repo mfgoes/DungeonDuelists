@@ -9,7 +9,7 @@ timer_init("attack_end");
 		
 		if timer_get("attack_time") < 0 {
 			timer_set("attack_time", spawn_number * 10 + 5); 
-			timer_set("attack_end",35); 
+			//timer_set("attack_end",35); 
 			attack_turn = false;	
 		}
 	}

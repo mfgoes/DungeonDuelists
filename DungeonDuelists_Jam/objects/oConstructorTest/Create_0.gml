@@ -15,12 +15,19 @@
 	//Setup game states
 	turn_to_play = 0; //player. 1 = AI. 
 	winner = 0; //1 = player 2 = enemy
-	player_HP = 3; HP_max = 3; 
-	opponent_HP = 3; HP_max_opponent = 3; 
+	player_HP = 5; HP_max = 5; 
+	opponent_HP = 5; HP_max_opponent = 5; 
 	RES = global.TEXT_RES; 
+	coins_player = 5;
+	coins_opponent = 5; 
+	draw_card = false; //for both player and opponent
+	first_move = true; //don't draw a card on the first move
 	
 	//UI animaiton
 	 m = 50; 
+	 
+	 //card visual variables
+	 margin_cards = TILESIZE/2; //make this dynamic later
 
 #endregion
 

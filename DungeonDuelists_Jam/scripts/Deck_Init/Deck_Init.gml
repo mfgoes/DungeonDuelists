@@ -26,7 +26,7 @@ function Deck_Init(){
 
 //GENERATE HAND FROM DECK STRUCTS
 Start_from_deck(3); //picks 3 first cards and makes them "in hand" 
-draw_hand_objects(3); //to do: refine this
+//draw_hand_objects(3); //to do: refine this
 //GENERATE CARD SLOTS ON BOARD 
 init_card_slots(); 
 

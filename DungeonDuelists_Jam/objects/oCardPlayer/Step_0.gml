@@ -3,7 +3,8 @@ if (live_call()) return live_result;
 
 //smooth enter
 if entrance_anim = true {
-y = lerp(y,ystart,0.03*(3 - card_number*0.5));
+var spd = card_number; if card_number > 3 spd = 3; //set max animation speed 
+y = lerp(y,ystart,0.03*(3 - spd*0.5));
 if round(y) = ystart entrance_anim = false; //exit animation
 if image_alpha < 1 image_alpha +=0.03; 
 }
@@ -25,7 +26,7 @@ else if card_active = false
 if mouse_check_button_pressed(mb_left) && (position_meeting(mouse_x, mouse_y, id))  {
 	if card_active = false {
 		card_active = true;
-		oConstructorTest.hand_set[card_number].state = 2; //2 = on field
+		oConstructorTest.card_set[card_number].state = 2; //2 = on field
 		alarm[0] = 20;
 		
 	}

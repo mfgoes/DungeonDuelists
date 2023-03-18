@@ -25,6 +25,10 @@ switch btn_type {
 			text = "next level";
 		}
 		break;
+		case (5): {
+			text = "pick a card";
+		}
+		break;
 }
 
 

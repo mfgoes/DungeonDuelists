@@ -23,7 +23,26 @@
 
 
 
-//check who's turn it is
+//check who's turn it is. Move this to script later. 
+timer_init("opponent_turn");
+
+if turn_to_play = 1 {
+	if timer_get("opponent_turn") <= 0 {
+		opponent_start_turn(); //triggers the code for the monsters. also checks what action to do first. 
+		timer_set("opponent_turn",50+irandom(25)); 	
+	}
+
+	if timer_get("opponent_turn") = 1 {
+		turn_to_play = 0;	
+		timer_set("opponent_turn",-1);
+	}
+	
+	first_move = false; 
+}
+
+if turn_to_play = 0 && first_move = false {
+	//pick card from deck	
+}
 
 //check win condition
 check_win_condition(); 

@@ -11,4 +11,5 @@ btn_type
 2: attack (if possible)
 3: restart
 4: next level
+5: pick card
 */
