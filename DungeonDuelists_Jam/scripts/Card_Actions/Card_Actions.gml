@@ -30,6 +30,7 @@
 	
 	function draw_card_player() {
 	
+		//figure out which card to draw
 		with(oConstructorTest) {		
 			var available_cards = array_length(card_set); //available = not in_hand, destroyed, or on_field. This number will selec the "correct" card for the hand. 
 			var cardnumber = 0; //which card number 
@@ -46,33 +47,30 @@
 				if card_set[h].state = card_state.in_hand
 					cards_in_hand +=1; 
 			}
-			//limit hand cards to 6
 			
-			var h = cards_in_hand;
-			var s = cardnumber; //the card ID to pick
-			if cards_in_hand < 5 && available_cards > 0 { //check cards in hand + if any cards left to draw
-				//update the "hand set". note: this would have been better to only adjust decks and not hand separately. 
-				array_resize(hand_set,cards_in_hand); 
-				//hand_set[h] = card_set[s];
-				card_set[s].state = card_state.in_hand; 
+			#region create the card 
+				var h = cards_in_hand;
+				var s = cardnumber; //the card ID to pick
+				if cards_in_hand < 5 && available_cards > 0 { //check cards in hand + if any cards left to draw
+					array_resize(hand_set,cards_in_hand); 
+					card_set[s].state = card_state.in_hand; 
 				
-				var new_pos = 0; 
-				
-				//check here what number to give
-				if instance_exists(oCardPlayer) {
-					for (var h = 0; h <= cards_in_hand; h++) {
-						with(oCardPlayer) if card_pos = h && card_pos <= new_pos //check if card has same number and no space between
-							new_pos++;  	
-					}	
-				} else new_pos = 0; 
-				dd = instance_create_depth(40+(sprite_get_width(card)+margin_cards)*new_pos,room_height-50,depth-100,oCardPlayer);
-				dd.card_number = s; //gives card an ID
-				dd.card_pos = new_pos; 
-				
-				
-			} 
-			#region 
-				else {
+					//determine draw position
+					var new_pos = 0; 
+					if instance_exists(oCardPlayer) {
+						for (var h = 0; h <= cards_in_hand; h++) {
+							with(oCardPlayer) if card_pos = h && card_pos <= new_pos //check if card has same number and no space between
+								new_pos++;  	
+						}	
+					} else new_pos = 0; 
+					dd = instance_create_depth(40+(sprite_get_width(card)+margin_cards)*new_pos,room_height-50,depth-100,oCardPlayer);
+					dd.card_number = s; //gives card an ID
+					dd.card_pos = new_pos; 
+				}
+			#endregion
+			else	
+			#region create message why you can't draw a card
+				 {
 					if available_cards = 0 {
 						show_debug_message("deck is empty"); 
 							dd = instance_create_depth(0,0,0,oUI_CardToast); 
@@ -88,13 +86,6 @@
 		}
 	}
 
-	/*function draw_hand_objects(argument0) {
-		var num = argument0;
-		for (var h = 0; h < num; h++) {
-			dd = instance_create_depth(30+(sprite_get_width(card)+margin_cards)*h,room_height-60,depth-100,oCardPlayer);
-			dd.card_number = h; //gives card an ID
-		}
-	}*/
 	
 	function destroy_card_on_field_random() {
 		var selected = irandom(2); //change later to check on field first
@@ -176,3 +167,12 @@ function attack_target() {
 	
 #endregion
 
+///@description increases mana by X amount (ie at the end of a turn) 
+/// @param {real} points
+function increase_mana(argument0) {
+	var points = argument0; 
+	if points =-1 points = 1; 
+
+	if oConstructorTest.coins_player < 10 //temporary maximum for now
+		oConstructorTest.coins_player+=points; 
+}

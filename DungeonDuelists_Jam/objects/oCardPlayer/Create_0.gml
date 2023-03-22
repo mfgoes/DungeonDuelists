@@ -9,5 +9,3 @@ y = ystart + 20;
 entrance_anim = true; 
 image_alpha  = 0.5; 
 card_active = false; //if active, destroy
-
-// update card position based on picked cards

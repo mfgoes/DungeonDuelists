@@ -23,6 +23,7 @@ if (position_meeting(mouse_x, mouse_y, id)) && mouse_check_button_pressed(mb_lef
 		case (1): { //end turn
 			with(oConstructorTest) {
 				draw_card_player(); 
+				increase_mana(1); 
 				turn_to_play = !turn_to_play; 
 				draw_card = false; //reset drawing cardss
 			}
@@ -46,6 +47,7 @@ if (position_meeting(mouse_x, mouse_y, id)) && mouse_check_button_pressed(mb_lef
 		case (5): {	//pick card player test
 			with(oConstructorTest) 
 				draw_card_player(); 
+				increase_mana(1); 
 		}
 		break;
 	}

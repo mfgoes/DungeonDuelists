@@ -81,6 +81,7 @@
     {"id":{"name":"GMLive_builder","path":"scripts/GMLive_builder/GMLive_builder.yy",},"order":0,},
     {"id":{"name":"Enemy_Deck_Actions","path":"scripts/Enemy_Deck_Actions/Enemy_Deck_Actions.yy",},"order":0,},
     {"id":{"name":"Card_Constructors","path":"scripts/Card_Constructors/Card_Constructors.yy",},"order":0,},
+    {"id":{"name":"Card_Monster_Actions","path":"scripts/Card_Monster_Actions/Card_Monster_Actions.yy",},"order":0,},
     {"id":{"name":"oButton","path":"objects/oButton/oButton.yy",},"order":0,},
     {"id":{"name":"GMLive_token","path":"scripts/GMLive_token/GMLive_token.yy",},"order":0,},
     {"id":{"name":"GMLive_vm_call","path":"scripts/GMLive_vm_call/GMLive_vm_call.yy",},"order":0,},

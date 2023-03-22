@@ -51,6 +51,7 @@
     {"name":"oStagePlayer","order":2,"path":"objects/oStagePlayer/oStagePlayer.yy",},
     {"name":"GMLive_notOnce","order":1,"path":"scripts/GMLive_notOnce/GMLive_notOnce.yy",},
     {"name":"Enemy_Deck_Actions","order":2,"path":"scripts/Enemy_Deck_Actions/Enemy_Deck_Actions.yy",},
+    {"name":"Card_Monster_Actions","order":7,"path":"scripts/Card_Monster_Actions/Card_Monster_Actions.yy",},
     {"name":"GMLive_token","order":7,"path":"scripts/GMLive_token/GMLive_token.yy",},
     {"name":"GMLive_vm_call","order":6,"path":"scripts/GMLive_vm_call/GMLive_vm_call.yy",},
     {"name":"GMLive_nodeTools","order":3,"path":"scripts/GMLive_nodeTools/GMLive_nodeTools.yy",},
