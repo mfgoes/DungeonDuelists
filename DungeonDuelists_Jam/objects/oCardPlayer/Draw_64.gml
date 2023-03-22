@@ -16,6 +16,8 @@ if instance_exists(oConstructorTest)
 	draw_set_font(fnt_BodyRegular);
 	draw_text(x*RES,(y-30)*RES,"atk: " + string(atk));
 	draw_text(x*RES,(y+26)*RES,"def: " + string(def));
+	
+	draw_text(x*RES,(y+6)*RES,"pos: " + string(card_pos));
 
 }
 

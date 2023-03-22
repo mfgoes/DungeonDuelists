@@ -55,8 +55,21 @@
 				array_resize(hand_set,cards_in_hand); 
 				//hand_set[h] = card_set[s];
 				card_set[s].state = card_state.in_hand; 
-				dd = instance_create_depth(40+(sprite_get_width(card)+margin_cards)*cards_in_hand,room_height-50,depth-100,oCardPlayer);
+				
+				var new_pos = 0; 
+				
+				//check here what number to give
+				if instance_exists(oCardPlayer) {
+					for (var h = 0; h <= cards_in_hand; h++) {
+						with(oCardPlayer) if card_pos = h && card_pos <= new_pos //check if card has same number and no space between
+							new_pos++;  	
+					}	
+				} else new_pos = 0; 
+				dd = instance_create_depth(40+(sprite_get_width(card)+margin_cards)*new_pos,room_height-50,depth-100,oCardPlayer);
 				dd.card_number = s; //gives card an ID
+				dd.card_pos = new_pos; 
+				
+				
 			} 
 			#region 
 				else {

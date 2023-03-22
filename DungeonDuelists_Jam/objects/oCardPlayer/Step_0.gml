@@ -38,3 +38,4 @@ if card_active = true {
 		image_alpha -=0.05;	
 }
 
+
