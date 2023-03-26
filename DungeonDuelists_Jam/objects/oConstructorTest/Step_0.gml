@@ -26,7 +26,7 @@
 //check who's turn it is. Move this to script later. 
 timer_init("opponent_turn");
 
-if turn_to_play = 1 {
+if turn_to_play = 1 { //opponents turn
 	if timer_get("opponent_turn") <= 0 {
 		opponent_start_turn(); //triggers the code for the monsters. also checks what action to do first. 
 		timer_set("opponent_turn",50+irandom(25)); 	

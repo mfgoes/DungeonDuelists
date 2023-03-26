@@ -7,12 +7,12 @@ draw_set_halign(fa_center);
 
 if instance_exists(oConstructorTest) 
 {
-	var name = card_number;
-	var atk = oConstructorTest.opponent_hand_set[card_number].attack;
-	var def = oConstructorTest.opponent_hand_set[card_number].defense;
+	var card_id = card_number;
+	var atk = oConstructorTest.opponent_card_set[card_number].attack;
+	var def = oConstructorTest.opponent_card_set[card_number].defense;
 	draw_set_alpha(image_alpha)
 	if (global.debugmode) 
-		draw_text(x*RES,y*RES,name);
+		draw_text(x*RES,y*RES,card_id);
 	draw_text(x*RES,(y-20)*RES,"atk: " + string(atk));
 	draw_text(x*RES,(y+26)*RES,"hp: " + string(def) + "/" + string(def));
 

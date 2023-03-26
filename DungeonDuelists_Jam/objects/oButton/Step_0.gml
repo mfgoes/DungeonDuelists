@@ -24,7 +24,10 @@ if (position_meeting(mouse_x, mouse_y, id)) && mouse_check_button_pressed(mb_lef
 			with(oConstructorTest) {
 				draw_card_player(); 
 				increase_mana(1); 
-				turn_to_play = !turn_to_play; 
+				if turn_to_play = 0 {
+					attack_opponent();
+					turn_to_play = 1;
+				}
 				draw_card = false; //reset drawing cardss
 			}
 			show_debug_message("turn has changed: {0}",oConstructorTest.turn_to_play); 
@@ -40,8 +43,10 @@ if (position_meeting(mouse_x, mouse_y, id)) && mouse_check_button_pressed(mb_lef
 		}
 		break;
 		case (4): {	//go to next level
-			if room_next(room) != -1
-				room_goto_next();
+			//if room_next(room) != -1
+			//	room_goto_next();
+			with(oConstructorTest) 
+				spawn_opponent_monster(); 
 		}
 		break;
 		case (5): {	//pick card player test

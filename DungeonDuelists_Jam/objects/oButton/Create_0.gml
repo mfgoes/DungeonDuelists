@@ -10,6 +10,6 @@ btn_type
 1: end turn
 2: attack (if possible)
 3: restart
-4: next level
+4: spawn opponent monster test
 5: pick card
 */

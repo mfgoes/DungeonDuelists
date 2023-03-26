@@ -1,9 +1,14 @@
 
 function opponent_start_turn(){
+	
+	//1: attack if possible
 	if instance_exists(oMonsterEnemy) with(oMonsterEnemy){
 		x = xstart; 
 		attack_turn = true; //let the monsters attack
 	}
+	
+	//2: spawn new enemies if possible
+	spawn_opponent_monster(); 
 }
 
 
@@ -65,5 +70,5 @@ function attack_target_player() {
 				oConstructorTest.winner = 2;
 				show_debug_message("you lost... cards left: {0}/{1}",cards_left,cards_total)
 			}	
-	}
+		}
 }

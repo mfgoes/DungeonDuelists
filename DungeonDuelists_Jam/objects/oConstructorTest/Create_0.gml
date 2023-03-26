@@ -39,11 +39,27 @@ if (live_call()) return live_result;
 
 //GENERATE ENEMY CARDS
 #region opponent setup
-	deck_init_opponent(3); 
-	//deck_shuffle(opponent_card_set); 
-	hand_init_opponent(3); //put 3 cards in player hand
+	deck_init_opponent(8);
+	
+	switch(room) {
+	case Room1: { //level 1 (easy enemies)
+		opponent_card_set[4] = new Monster_mid();
+		opponent_card_set[5] = new Monster_mid();
+	break
+	}
+		
+		
+	}
+	deck_shuffle(opponent_card_set); //shuffle
+	
+	
+	//hand_init_opponent(3); //for the MVP, there is no opponent hand. They play directly from the deck. 
 	init_card_slots_opponent();
-	spawn_cards_enemy_start(3); //put 2 cards on the field at start of game (slightly different function)
+	spawn_cards_enemy_start(2); //put 2 cards on the field at start of game (slightly different function)
+	
+	//debug
+	opponent_card_set[2].state = card_state.destroyed;
+		
 #endregion 
 
 

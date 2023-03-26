@@ -69,8 +69,14 @@ if (global.debugmode) {
 		var str1 = "__ ";
 		var _item = opponent_card_set[i];
 		if opponent_card_set[i].state = card_state.in_hand str1 = "hand - ";	
-		if opponent_card_set[i].state = card_state.in_deck str1 = "deck - ";	
-		if opponent_card_set[i].state = card_state.on_field str1 = "field - ";
+		if opponent_card_set[i].state = card_state.in_deck {
+			draw_set_color(c_white);
+			str1 = "deck - ";	
+		}
+		if opponent_card_set[i].state = card_state.on_field {
+			draw_set_color(c_aqua);
+			str1 = "field - ";
+		}
 		if opponent_card_set[i].state = card_state.destroyed str1 = "graveyard - ";
 		draw_text(_x,_y2,str1 + string(_item.name) + ", atk: " + string(_item.attack)); 
 	

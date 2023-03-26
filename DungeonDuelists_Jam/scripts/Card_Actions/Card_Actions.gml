@@ -112,9 +112,8 @@
 function attack_opponent() {
 		
 	//toggle play turn
-	if turn_to_play = 0
+	//if turn_to_play = 0 //moved this out of script for more flexibility 
 	{
-		turn_to_play = 1;
 		//check if any monsters on field
 		var count_on_field = 0; 
 		for (var h = 0; h < array_length(card_set); h++) {
@@ -162,6 +161,14 @@ function attack_target() {
 	}
 	else {
 		//attack opponent directly	
+		var card_plr = card_number; 
+		oConstructorTest.opponent_HP -= oConstructorTest.card_set[card_plr].attack; 
+		if oConstructorTest.opponent_HP <= 0 { //defeat oponnent 
+			{
+				oConstructorTest.winner = 1;
+				show_debug_message("you won!")
+			}	
+		}
 	}
 }
 	

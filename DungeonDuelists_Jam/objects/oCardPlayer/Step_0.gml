@@ -35,6 +35,9 @@ if mouse_check_button_pressed(mb_left) && (position_meeting(mouse_x, mouse_y, id
 			oConstructorTest.card_set[card_number].state = 2; //2 = on field
 			alarm[0] = 20;
 			oConstructorTest.coins_player-=mana_cost; 
+			dd = instance_create_depth(0,0,0,oUI_CardToast); 
+			dd.str = "-" + string(mana_cost) + " mana"; 
+			//dd.style = big number
 		}
 	}
 	else {

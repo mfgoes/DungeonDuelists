@@ -22,7 +22,7 @@ switch btn_type {
 		}
 		break;
 		case (4): {
-			text = "next level";
+			text = "spawn monster enemy";
 		}
 		break;
 		case (5): {
