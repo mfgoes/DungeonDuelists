@@ -1,6 +1,4 @@
 /// @description draw arrays
-
-if (live_call()) return live_result;
 draw_set_halign(fa_left);
 var RES = global.TEXT_RES;
 
@@ -45,12 +43,12 @@ if (global.debugmode) {
 		draw_text(_x,_y,string(_item.name + ", atk: " + string(_item.attack))); 
 	}
 
-
+	if (live_call()) return live_result;
 	//draw slots
 	for (var i = 0; i < array_length(card_slots_opponent); i++) 
 	{
 		var _y = room_height * global.TEXT_RES - 100 + 20* i;
-		draw_text(_x,_y,"E slots: " + string(card_slots_opponent[i])); 
+		draw_text(room_width,_y,"E slots: " + string(card_slots_opponent[i])); 
 	}
 	
 	

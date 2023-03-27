@@ -28,7 +28,7 @@
     {"name":"Deck_Init","order":3,"path":"scripts/Deck_Init/Deck_Init.yy",},
     {"name":"GMLive_thread","order":4,"path":"scripts/GMLive_thread/GMLive_thread.yy",},
     {"name":"card","order":3,"path":"sprites/card/card.yy",},
-    {"name":"Enemy_AI","order":4,"path":"scripts/Enemy_AI/Enemy_AI.yy",},
+    {"name":"Init_Enemy","order":4,"path":"scripts/Init_Enemy/Init_Enemy.yy",},
     {"name":"Card_Actions","order":1,"path":"scripts/Card_Actions/Card_Actions.yy",},
     {"name":"oStageEnemy","order":1,"path":"objects/oStageEnemy/oStageEnemy.yy",},
     {"name":"fnt_Bold","order":1,"path":"fonts/fnt_Bold/fnt_Bold.yy",},

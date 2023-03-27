@@ -55,7 +55,7 @@
     {"id":{"name":"GMLive_thread","path":"scripts/GMLive_thread/GMLive_thread.yy",},"order":0,},
     {"id":{"name":"card","path":"sprites/card/card.yy",},"order":0,},
     {"id":{"name":"GMLive_action","path":"scripts/GMLive_action/GMLive_action.yy",},"order":0,},
-    {"id":{"name":"Enemy_AI","path":"scripts/Enemy_AI/Enemy_AI.yy",},"order":0,},
+    {"id":{"name":"Init_Enemy","path":"scripts/Init_Enemy/Init_Enemy.yy",},"order":0,},
     {"id":{"name":"Card_Actions","path":"scripts/Card_Actions/Card_Actions.yy",},"order":0,},
     {"id":{"name":"oStageEnemy","path":"objects/oStageEnemy/oStageEnemy.yy",},"order":0,},
     {"id":{"name":"fnt_Bold","path":"fonts/fnt_Bold/fnt_Bold.yy",},"order":0,},

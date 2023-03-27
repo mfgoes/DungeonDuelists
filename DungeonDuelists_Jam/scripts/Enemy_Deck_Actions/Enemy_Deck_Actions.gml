@@ -65,29 +65,43 @@ function spawn_opponent_monster() {
         }
     }
 	
+	//determine free positon on the field (to do: simplify this later)
+	//if oConstructorTest.card_slots[0] = 0 //etc. 
+	var spawn_number = 0; 
+	if card_slots_opponent[0] = 0 {
+		card_slots_opponent[0] = 1; // 
+		spawn_number = 0;
+	}
+	else if card_slots_opponent[1] = 0 {
+		card_slots_opponent[1] = 1; // 
+		spawn_number = 1;
+	}
+	else if card_slots_opponent[2] = 0 {
+		card_slots_opponent[2] = 1; // 	
+		spawn_number = 2;
+	}
+
 
     #region create the enemy
-	var _x = oStageEnemy.x + 20 + 34 * card_slots_opponent[0];
-	if card_slots_opponent[0] < 2 {
-    card_slots_opponent[0] += 1;
-	}
-	else {
-	    // show text: cannot spawn 
-	}
-		
+	var _x = oStageEnemy.x + 20 + 34 * spawn_number;
 	var _y = oStageEnemy.y - 10; 
 	
+	if instance_number(oMonsterEnemy) < 3 {
 	var card_number = 0; //deck ID
 		 if (first_available >= 0) && cards_on_field < 8 { //don't spawn if more than 3
-	        var dd = instance_create_depth(_x, _y, depth, oMonsterEnemy);
-			dd.card_number = card_number;
-			
-			
+	        var dd = instance_create_depth(_x, _y, depth-100, oMonsterEnemy);
+			dd.card_number = first_available;
+			dd.spawn_number = spawn_number; 
 	        opponent_card_set[first_available].state = card_state.on_field;
 		} else {
 	        show_debug_message("No cards available in deck"); 
 	        return;
 	    }
+	}
+	else {
+	     show_debug_message("Board full. Cannot spawn"); 
+	}
+		
 	
     #endregion
 }

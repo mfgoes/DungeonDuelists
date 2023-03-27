@@ -4,7 +4,6 @@
 name = "nothing"; //placeholder name
 card_number = 0; //IDs for your hand
 spawn_number = card_number+1; //change this later 
-spawn_location = 0; 
 x = xstart + 20; 
 image_alpha  = 0.3; 
 entrance_anim = true; 
