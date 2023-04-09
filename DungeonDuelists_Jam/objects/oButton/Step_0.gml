@@ -35,8 +35,8 @@ if (position_meeting(mouse_x, mouse_y, id)) && mouse_check_button_pressed(mb_lef
 			
 			// Determine who should start
 	        with(GameManager) {
-				var player_total_power = CalculateTotalPower(card_set);
-		        var opponent_total_power = CalculateTotalPower(opponent_card_set);
+				determine_attack_order(); 
+				
 				/*
 		        if player_total_power <= opponent_total_power
 		            turn_to_play = 0;

@@ -103,6 +103,17 @@ function CalculateTotalPower(argument0) {
     return total_power;
 }
 
+function determine_attack_order() {
+    var player_total_power = CalculateTotalPower(card_set);
+    var opponent_total_power = CalculateTotalPower(opponent_card_set);
+
+    if (player_total_power < opponent_total_power) {
+        attack_turn = 0; // Set attack_turn to player
+    } else {
+        attack_turn = 1; // Set attack_turn to opponent
+    }
+}
+
 
 function deck_shuffle(argument0) {
 /// @desc picks top 3 cards from deck
