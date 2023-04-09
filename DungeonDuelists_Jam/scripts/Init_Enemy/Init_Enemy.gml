@@ -1,5 +1,29 @@
 
-function opponent_start_turn(){
+/// @desc opponent deck
+/// @param {integer} amount of cards
+function deck_init_opponent(argument0) {
+	amount = argument0;
+	opponent_card_set = array_create_ext(amount, function() { return new Monster_weak();});
+
+	//To do: create presets here. 
+	
+	//generate 3 weak cards 
+	for (var h = 0; h < 3; h++) {
+		with (opponent_card_set[h]) {
+			Monster_weak();
+		}
+	}
+	////generate 2 mid cards 
+	//for (var h = 3; h < 5; h++) {
+	//	with (opponent_card_set[h]) {
+	//		Monster_mid();
+	//	}
+	//}
+
+}
+
+
+function attack_player_init(){
 	
 	//1: attack if possible
 	if instance_exists(oMonsterEnemy) with(oMonsterEnemy){
@@ -7,8 +31,12 @@ function opponent_start_turn(){
 		attack_turn = true; //let the monsters attack
 	}
 	
-	//2: spawn new enemies if possible
-	spawn_opponent_monster(); 
+	//2: spawn new enemies if possible. amount depends on how many enemies are on board + "luck" 
+	//var count = 3 - instance_number(oMonsterEnemy);
+	//if count > 1 && random(1) < 0.2 count = 1; //20% chance of just spawning one monster. 
+	//repeat(count) { 
+	//	spawn_opponent_monster(); 
+	//}
 }
 
 
@@ -30,45 +58,21 @@ with (oMonsterEnemy) {
 
 	
 	
-function attack_target_player() {
-	///@desc attacks the opposite side
-	
-	//check how many cards you have left
-	var destroyed = 0; 
-	for (var h = 0; h < array_length(oConstructorTest.card_set); h++) {
-		if oConstructorTest.card_set[h].state = card_state.destroyed {
-			destroyed +=1; 
-		}
-	}
-	var cards_total = array_length(oConstructorTest.card_set); 
-	var cards_left = cards_total - destroyed;
-	
-	
-		
-	//set arg to target. create seperate function list for 'used by both opponent and player' 
-	if instance_exists(oMonsterPlayer) {
-		//attack monsters	
-		var target = oMonsterPlayer;
-		var card_opponent = oMonsterPlayer.card_number;
-		var card_plr = card_number; 
-		var targetHP = oConstructorTest.player_HP;  
-			
-		oConstructorTest.card_set[card_opponent].defense -= oConstructorTest.opponent_card_set[card_plr].attack; 
-		if oConstructorTest.card_set[card_opponent].defense <= 0 
-		with(target) {
-			if card_opponent = card_number instance_destroy(); 
-		}
-		//if less than zero, do difference damage to opponent directly
-	}
-	else { //attack player directly
-		show_debug_message("attacking player directly")
-		oConstructorTest.player_HP -= 1;
-		}
-		if oConstructorTest.player_HP <= 0 {
-			{
-				//defeat player 
-				oConstructorTest.winner = 2;
-				show_debug_message("you lost... cards left: {0}/{1}",cards_left,cards_total)
-			}	
-		}
+
+/// @desc generate hand from deck
+/// @param {integer} amount of cards
+function hand_init_opponent(argument0) {
+	var num = argument0; 
+	opponent_hand_set =  array_create(num,0);
+	for (var h = 0; h < array_length(opponent_hand_set); h++) {
+		opponent_hand_set[h] = opponent_card_set[h];
+		opponent_card_set[h].state = card_state.in_hand; 
+	}	
+}
+
+
+
+function init_card_slots_opponent() {
+	 //to do: make this dynamic so it can be used by both opponent and player functions
+	card_slots_opponent = array_create(3,0);
 }

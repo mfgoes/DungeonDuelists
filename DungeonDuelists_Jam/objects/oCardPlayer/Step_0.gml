@@ -24,26 +24,27 @@ else if card_active = false
 
 //activate card (deleting this object)
 if mouse_check_button_pressed(mb_left) && (position_meeting(mouse_x, mouse_y, id))  {
+	if GameManager.winner = 0 { //if game isn't over yet
+		//check if you have enough mana. also check monsters on board
+		var mana_cost = GameManager.card_set[card_number].attack;
+		var monsters_on_board = instance_number(oMonsterPlayer); 
 	
-	//check if you have enough mana. also check monsters on board
-	var mana_cost = oConstructorTest.card_set[card_number].attack;
-	var monsters_on_board = instance_number(oMonsterPlayer); 
-	
-	if oConstructorTest.coins_player >= mana_cost && monsters_on_board < 3 {
-		if card_active = false {
-			card_active = true;
-			oConstructorTest.card_set[card_number].state = 2; //2 = on field
-			alarm[0] = 20;
-			oConstructorTest.coins_player-=mana_cost; 
-			dd = instance_create_depth(0,0,0,oUI_CardToast); 
-			dd.str = "-" + string(mana_cost) + " mana"; 
-			//dd.style = big number
+		if GameManager.coins_player >= mana_cost && monsters_on_board < 3 {
+			if card_active = false {
+				card_active = true;
+				GameManager.card_set[card_number].state = 2; //2 = on field
+				alarm[0] = 20;
+				GameManager.coins_player-=mana_cost; 
+				dd = instance_create_depth(0,0,0,oUI_CardToast); 
+				dd.str = "-" + string(mana_cost) + " mana"; 
+				//dd.style = big number
+			}
 		}
-	}
-	else {
-		//write that it's too expensive
-		dd = instance_create_depth(0,0,0,oUI_CardToast); 
-		dd.str = "not enough mana"; if monsters_on_board = 3 dd.str = "too many monsters on board"; 
+		else {
+			//write that it's too expensive
+			dd = instance_create_depth(0,0,0,oUI_CardToast); 
+			dd.str = "not enough mana"; if monsters_on_board = 3 dd.str = "too many monsters on board"; 
+		}
 	}
 }
 

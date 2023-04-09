@@ -10,7 +10,7 @@ switch btn_type {
 		}
 		break;
 		case (1): {
-			text = "end turn";
+			text = "start battle"; //used to be called "end turn" however, since start turns change, this fits better. 
 		}
 		break;
 		case (2): {
@@ -22,7 +22,7 @@ switch btn_type {
 		}
 		break;
 		case (4): {
-			text = "spawn monster enemy";
+			text = "next level";
 		}
 		break;
 		case (5): {
@@ -36,6 +36,5 @@ var RES = global.TEXT_RES;
 draw_set_halign(fa_center);
 draw_set_alpha(btn_alpha);
 draw_text((x)*RES,(y-4)*RES,text);
-
 draw_set_alpha(1);
 draw_set_halign(fa_left);

@@ -1,37 +1,12 @@
 //all card actions for the player
 
+//// @desc draws a card from the deck and adds it to your hand
 #region basic stuff
-
-	function deck_shuffle(argument0) {
-	/// @desc picks top 3 cards from deck
-	/// @param {real} deck The deck to shuffle
-		r = array_length(argument0) - 1;
-		for(var i = 0; i < r; i += 1) {
-		    j = irandom_range(i,r);
-		    temp = argument0[i];
-		    argument0[i] = argument0[j];
-		    argument0[j] = temp;
-		}
-	}
-
-	//// @desc cards to pick up at the start of a game
-	/// @param {real} cards 
-	function Start_from_deck(argument0) {
-		var num = argument0;
-		hand_set =  array_create(num,0);
-		repeat(num) draw_card_player(); 
-		/*hand_set =  array_create(num,0);
-		for (var h = 0; h < array_length(hand_set); h++) {
-			hand_set[h] = card_set[h];
-			card_set[h].state = card_state.in_hand; 
-		}*/
-	}
-	
 	
 	function draw_card_player() {
 	
 		//figure out which card to draw
-		with(oConstructorTest) {		
+		with(GameManager) {		
 			var available_cards = array_length(card_set); //available = not in_hand, destroyed, or on_field. This number will selec the "correct" card for the hand. 
 			var cardnumber = 0; //which card number 
 			var cards_in_hand = 0; //this is used to check if you are allowed to draw
@@ -76,11 +51,11 @@
 							dd = instance_create_depth(0,0,0,oUI_CardToast); 
 							dd.str = "deck is empty";
 					}	
-					else {
-						show_debug_message("too many cards in hand"); 
-							dd = instance_create_depth(0,0,0,oUI_CardToast); 
-							dd.str = "too many cards in hand"; 
-					}	
+					//else {
+					//	//show_debug_message("too many cards in hand"); 
+					//	//	dd = instance_create_depth(0,0,0,oUI_CardToast); 
+					//	//	dd.str = "too many cards in hand"; 
+					//}	
 				}
 			#endregion
 		}
@@ -95,15 +70,15 @@
 			 if card_number = selected 
 				instance_destroy(); 
 		}
-		oConstructorTest.card_slots[selected,0] = 0; //empty field spot
+		GameManager.card_slots[selected,0] = 0; //empty field spot
 	}
 
 	function init_card_slots() {		//check card slot in Game object before spawning on it. 
 		 //set 'in slot' check (0) + x positions (1)
 		card_slots = array_create(3,0);
-		for (var h = 0; h < array_length(card_slots); h++) {
-			card_slots[h,1] = 22 + h*34; 
-		}
+		//for (var h = 0; h < array_length(card_slots); h++) {
+		//	card_slots[h,1] = 22 + h*34; 
+		//}
 	}
 #endregion 
 
@@ -152,8 +127,8 @@ function attack_target() {
 		var card_opponent = oMonsterEnemy.card_number;
 		var card_plr = card_number; 
 			
-		oConstructorTest.opponent_card_set[card_opponent].defense -= oConstructorTest.card_set[card_plr].attack; 
-		if oConstructorTest.opponent_card_set[card_opponent].defense <= 0 
+		GameManager.opponent_card_set[card_opponent].defense -= GameManager.card_set[card_plr].attack; 
+		if GameManager.opponent_card_set[card_opponent].defense <= 0 
 		with(target) {
 			if card_opponent = card_number instance_destroy(); 
 		}
@@ -162,10 +137,10 @@ function attack_target() {
 	else {
 		//attack opponent directly	
 		var card_plr = card_number; 
-		oConstructorTest.opponent_HP -= oConstructorTest.card_set[card_plr].attack; 
-		if oConstructorTest.opponent_HP <= 0 { //defeat oponnent 
+		GameManager.opponent_HP -= GameManager.card_set[card_plr].attack; 
+		if GameManager.opponent_HP <= 0 { //defeat oponnent 
 			{
-				oConstructorTest.winner = 1;
+				GameManager.winner = 1;
 				show_debug_message("you won!")
 			}	
 		}
@@ -180,6 +155,6 @@ function increase_mana(argument0) {
 	var points = argument0; 
 	if points =-1 points = 1; 
 
-	if oConstructorTest.coins_player < 10 //temporary maximum for now
-		oConstructorTest.coins_player+=points; 
+	if GameManager.coins_player < 10 //temporary maximum for now
+		GameManager.coins_player+=points; 
 }

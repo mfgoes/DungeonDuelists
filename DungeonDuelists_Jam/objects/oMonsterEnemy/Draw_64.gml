@@ -5,11 +5,11 @@ var RES = global.TEXT_RES;
 draw_set_halign(fa_center);
 
 
-if instance_exists(oConstructorTest) 
+if instance_exists(GameManager) 
 {
 	var card_id = card_number;
-	var atk = oConstructorTest.opponent_card_set[card_number].attack;
-	var def = oConstructorTest.opponent_card_set[card_number].defense;
+	var atk = GameManager.opponent_card_set[card_number].attack;
+	var def = GameManager.opponent_card_set[card_number].defense;
 	draw_set_alpha(image_alpha)
 	if (global.debugmode) 
 		draw_text(x*RES,y*RES,card_id);

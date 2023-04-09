@@ -18,10 +18,11 @@
 	player_HP = 5; HP_max = 5; 
 	opponent_HP = 5; HP_max_opponent = 5; 
 	RES = global.TEXT_RES; 
-	coins_player = 5;
+	coins_player = 14;
 	coins_opponent = 5; 
 	draw_card = false; //for both player and opponent
 	first_move = true; //don't draw a card on the first move
+	battle_started = false;
 	
 	//UI animaiton
 	 m = 50; 

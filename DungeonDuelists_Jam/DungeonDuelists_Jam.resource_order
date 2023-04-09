@@ -28,8 +28,9 @@
     {"name":"Deck_Init","order":3,"path":"scripts/Deck_Init/Deck_Init.yy",},
     {"name":"GMLive_thread","order":4,"path":"scripts/GMLive_thread/GMLive_thread.yy",},
     {"name":"card","order":3,"path":"sprites/card/card.yy",},
+    {"name":"Room2","order":1,"path":"rooms/Room2/Room2.yy",},
     {"name":"Init_Enemy","order":4,"path":"scripts/Init_Enemy/Init_Enemy.yy",},
-    {"name":"Card_Actions","order":1,"path":"scripts/Card_Actions/Card_Actions.yy",},
+    {"name":"Card_Actions_Player","order":1,"path":"scripts/Card_Actions_Player/Card_Actions_Player.yy",},
     {"name":"oStageEnemy","order":1,"path":"objects/oStageEnemy/oStageEnemy.yy",},
     {"name":"fnt_Bold","order":1,"path":"fonts/fnt_Bold/fnt_Bold.yy",},
     {"name":"GMLiveAPI_js","order":4,"path":"scripts/GMLiveAPI_js/GMLiveAPI_js.yy",},
@@ -70,6 +71,6 @@
     {"name":"GMLive_tools","order":1,"path":"scripts/GMLive_tools/GMLive_tools.yy",},
     {"name":"Dual_Slicer_flatten","order":6,"path":"sprites/Dual_Slicer_flatten/Dual_Slicer_flatten.yy",},
     {"name":"GMLive_program","order":3,"path":"scripts/GMLive_program/GMLive_program.yy",},
-    {"name":"oConstructorTest","order":5,"path":"objects/oConstructorTest/oConstructorTest.yy",},
+    {"name":"GameManager","order":5,"path":"objects/GameManager/GameManager.yy",},
   ],
 }

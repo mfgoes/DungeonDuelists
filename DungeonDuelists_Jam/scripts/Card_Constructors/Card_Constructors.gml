@@ -4,6 +4,7 @@ function Monster_card() constructor {
 	name =  "Default name"
 	attack = 0
 	defense = 1
+	hp_max = defense 
 	state = card_state.in_deck
 	identifier = 0; 
 }
@@ -14,6 +15,7 @@ function Monster_strong() : Monster_card() constructor {
 	name =  "Strong Monster"
 	attack = 2
 	defense = 4
+	hp_max = defense 
 }
 
 function Monster_weak()  : Monster_card() constructor {
@@ -21,6 +23,7 @@ function Monster_weak()  : Monster_card() constructor {
 	name =  "Weak Monster"
 	attack = 1
 	defense = 1
+	hp_max = defense 
 }
 
 function Monster_mid()  : Monster_card() constructor {
@@ -28,6 +31,7 @@ function Monster_mid()  : Monster_card() constructor {
 	name =  "Mid Monster"
 	attack = 2
 	defense = 1
+	hp_max = defense 
 }
 
 

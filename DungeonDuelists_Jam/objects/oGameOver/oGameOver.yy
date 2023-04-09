@@ -33,8 +33,8 @@
   ],
   "solid": false,
   "spriteId": {
-    "name": "button_primary_empty",
-    "path": "sprites/button_primary_empty/button_primary_empty.yy",
+    "name": "heart_icon",
+    "path": "sprites/heart_icon/heart_icon.yy",
   },
   "spriteMaskId": null,
   "visible": true,

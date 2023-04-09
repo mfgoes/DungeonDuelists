@@ -2,6 +2,8 @@
 draw_set_halign(fa_left);
 var RES = global.TEXT_RES;
 
+//if (live_call()) return live_result;
+	
 if (global.debugmode) {
 	//UI player cards
 	var _x = 10;
@@ -43,12 +45,11 @@ if (global.debugmode) {
 		draw_text(_x,_y,string(_item.name + ", atk: " + string(_item.attack))); 
 	}
 
-	if (live_call()) return live_result;
 	//draw slots
-	for (var i = 0; i < array_length(card_slots_opponent); i++) 
+	for (var i = 0; i < array_length(card_slots); i++) 
 	{
 		var _y = room_height * global.TEXT_RES - 100 + 20* i;
-		draw_text(room_width,_y,"E slots: " + string(card_slots_opponent[i])); 
+		draw_text(room_width,_y,"P slots: " + string(card_slots[i])); 
 	}
 	
 	
@@ -117,6 +118,7 @@ if winner = 0 {
 		m =  lerp(m,50,0.2); 
 	}
 	draw_text(_x,_y,str);
+	draw_text(_x,_y+20,battle_started); 
 
 	draw_rectangle(_x-m,_y+20,_x+m,_y+21,0);
 	//draw_sprite_ext(button_primary_empty,0,_x,_y+8,RES,RES,0,c_white,1);
@@ -163,16 +165,21 @@ if winner = 0 {
 #region draw cards left
 	var _y = 70;
 	var destroyed = 0; 
-	for (var h = 0; h < array_length(oConstructorTest.card_set); h++) {
-		if oConstructorTest.card_set[h].state = card_state.destroyed {
+	for (var h = 0; h < array_length(GameManager.card_set); h++) {
+		if GameManager.card_set[h].state = card_state.destroyed {
 			destroyed +=1; 
 		}
 	}
-	var cards_total = array_length(oConstructorTest.card_set); 
+	var cards_total = array_length(GameManager.card_set); 
 	var cards_left = cards_total - destroyed;	
 	draw_set_font(fnt_BodyRegular);
-	draw_text(_x,_y,"Deck: " + string(cards_left) + "/" + string(cards_total)); 
-
+	
+	var _text = "player"; //calculate turn order by adding up the atk + def of each side. 
+	var player_total_power = CalculateTotalPower(card_set);
+	var opponent_total_power = CalculateTotalPower(opponent_card_set);
+	if player_total_power > opponent_total_power _text = "opponent" 
+	
+	draw_text(_x,_y,"First turn: " + string(_text) + " Power: " + string(player_total_power) + "vs " + string(opponent_total_power));  
 #endregion
 
 //reset

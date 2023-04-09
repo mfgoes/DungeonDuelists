@@ -5,11 +5,11 @@ var RES = global.TEXT_RES;
 draw_set_halign(fa_center);
 
 //draw based on struct
-if instance_exists(oConstructorTest) 
+if instance_exists(GameManager) 
 {
-	var name = oConstructorTest.card_set[card_number].name; //was hand set
-	var atk = oConstructorTest.card_set[card_number].attack;
-	var def = oConstructorTest.card_set[card_number].defense;
+	var name = GameManager.card_set[card_number].name; //was hand set
+	var atk = GameManager.card_set[card_number].attack;
+	var def = GameManager.card_set[card_number].defense;
 	draw_set_alpha(image_alpha)
 	draw_set_font(fnt_Bold);
 	draw_text(x*RES,(y-3)*RES,name);
