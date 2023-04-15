@@ -26,13 +26,13 @@ else if card_active = false
 if mouse_check_button_pressed(mb_left) && (position_meeting(mouse_x, mouse_y, id))  {
 	if GameManager.winner = 0 { //if game isn't over yet
 		//check if you have enough mana. also check monsters on board
-		var mana_cost = GameManager.card_set[card_number].attack;
+		var mana_cost = GameManager.player_card_set[card_number].attack;
 		var monsters_on_board = instance_number(oMonsterPlayer); 
 	
 		if GameManager.coins_player >= mana_cost && monsters_on_board < 3 {
 			if card_active = false {
 				card_active = true;
-				GameManager.card_set[card_number].state = 2; //2 = on field
+				GameManager.player_card_set[card_number].state = 2; //2 = on field
 				alarm[0] = 20;
 				GameManager.coins_player-=mana_cost; 
 				dd = instance_create_depth(0,0,0,oUI_CardToast); 

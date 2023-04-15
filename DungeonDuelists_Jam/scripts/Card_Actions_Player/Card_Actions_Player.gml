@@ -7,19 +7,19 @@
 	
 		//figure out which card to draw
 		with(GameManager) {		
-			var available_cards = array_length(card_set); //available = not in_hand, destroyed, or on_field. This number will selec the "correct" card for the hand. 
+			var available_cards = array_length(player_card_set); //available = not in_hand, destroyed, or on_field. This number will selec the "correct" card for the hand. 
 			var cardnumber = 0; //which card number 
 			var cards_in_hand = 0; //this is used to check if you are allowed to draw
-			for (var h = 0; h < array_length(card_set); h++) {
-				if (card_set[h].state = card_state.in_hand)
-				or (card_set[h].state = card_state.on_field)
-				or (card_set[h].state = card_state.destroyed)
+			for (var h = 0; h < array_length(player_card_set); h++) {
+				if (player_card_set[h].state = card_state.in_hand)
+				or (player_card_set[h].state = card_state.on_field)
+				or (player_card_set[h].state = card_state.destroyed)
 				{
 					cardnumber +=1; 
 					available_cards -=1; 
 					if available_cards = 1 oDeckPlayer.image_alpha = 0; //hide deck image if no more cards in deck to pick
 				}
-				if card_set[h].state = card_state.in_hand
+				if player_card_set[h].state = card_state.in_hand
 					cards_in_hand +=1; 
 			}
 			
@@ -28,7 +28,7 @@
 				var s = cardnumber; //the card ID to pick
 				if cards_in_hand < 5 && available_cards > 0 { //check cards in hand + if any cards left to draw
 					array_resize(hand_set,cards_in_hand); 
-					card_set[s].state = card_state.in_hand; 
+					player_card_set[s].state = card_state.in_hand; 
 				
 					//determine draw position
 					var new_pos = 0; 
@@ -64,7 +64,7 @@
 	
 	function destroy_card_on_field_random() {
 		var selected = irandom(2); //change later to check on field first
-		card_set[selected].state = card_state.destroyed; 
+		player_card_set[selected].state = card_state.destroyed; 
 	
 		with (oMonsterPlayer) {
 			 if card_number = selected 
@@ -91,8 +91,8 @@ function attack_opponent() {
 	{
 		//check if any monsters on field
 		var count_on_field = 0; 
-		for (var h = 0; h < array_length(card_set); h++) {
-			if card_set[h].state = card_state.on_field {
+		for (var h = 0; h < array_length(player_card_set); h++) {
+			if player_card_set[h].state = card_state.on_field {
 				count_on_field +=1; 
 			}
 		}
@@ -127,7 +127,7 @@ function attack_target() {
 		var card_opponent = oMonsterEnemy.card_number;
 		var card_plr = card_number; 
 			
-		GameManager.opponent_card_set[card_opponent].defense -= GameManager.card_set[card_plr].attack; 
+		GameManager.opponent_card_set[card_opponent].defense -= GameManager.player_card_set[card_plr].attack; 
 		if GameManager.opponent_card_set[card_opponent].defense <= 0 
 		with(target) {
 			if card_opponent = card_number instance_destroy(); 
@@ -137,7 +137,7 @@ function attack_target() {
 	else {
 		//attack opponent directly	
 		var card_plr = card_number; 
-		GameManager.opponent_HP -= GameManager.card_set[card_plr].attack; 
+		GameManager.opponent_HP -= GameManager.player_card_set[card_plr].attack; 
 		if GameManager.opponent_HP <= 0 { //defeat oponnent 
 			{
 				GameManager.winner = 1;

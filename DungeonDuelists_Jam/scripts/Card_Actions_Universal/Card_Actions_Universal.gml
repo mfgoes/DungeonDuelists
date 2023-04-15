@@ -17,12 +17,12 @@ if count_destroyed = array_length(opponent_card_set) {
 	
 //check if opponent won
 count_destroyed = 0; 
-for (var h = 0; h < array_length(card_set); h++) {
-	if card_set[h].state = card_state.destroyed {
+for (var h = 0; h < array_length(player_card_set); h++) {
+	if player_card_set[h].state = card_state.destroyed {
 		count_destroyed +=1; 
 	}
 }
-if count_destroyed = array_length(card_set) {
+if count_destroyed = array_length(player_card_set) {
 	winner = 2; //opponent wins	
 }
 }
@@ -48,44 +48,80 @@ if winner > 0 && !instance_exists(oGameOver) {
 	
 function process_turn() {
 	
-	if (turn_to_play == 0) { //player turn 
-        // Handle player's turn logic
-		if timer_get("player_turn") <= 0 {
-            attack_opponent();
-            timer_set("player_turn", 50 + irandom(25));
+	if attack_turn = 0 {   // 1st turn
+		if (turn_to_play == 0) {
+	        // Handle player's turn logic
+			if timer_get("player_turn") <= 0 {
+	            attack_opponent();
+	            timer_set("player_turn", 50 + irandom(25));
 			
-			if !instance_exists(oMonsterPlayer) && first_move != true { //skip to enemy turn if you don't spawn anything	
-				 timer_set("player_turn", 10);
+				if !instance_exists(oMonsterPlayer) && first_move != true { //skip to enemy turn if you don't spawn anything	
+					 timer_set("player_turn", 10);
+				}
+	        }
+			if timer_get("player_turn") = 1 {
+				turn_to_play = 1;
+	            timer_set("player_turn", -1);
+	        }
+	    }
+		 else { // 2nd turn
+	       if timer_get("opponent_turn") <= 0 {
+				attack_player_init();
+				timer_set("opponent_turn", 50 + irandom(25));
 			}
-        }
-		if timer_get("player_turn") = 1 {
-			turn_to_play = 1;
-            timer_set("player_turn", -1);
-        }
-    }
-	 else { // Opponent's turn
-        // Handle opponent's turn logic
-		if timer_get("opponent_turn") <= 0 {
-			attack_player_init();
-			timer_set("opponent_turn", 50 + irandom(25));
+			if timer_get("opponent_turn") = 1 {
+				timer_set("opponent_turn", -1);
+				// Spawn enemy monsters (move somewhere else)
+				spawn_opponent_monster();
+				draw_card_player(); 
+				battle_started = false;
+				turn_to_play = 0;
+	        }
 		}
-		if timer_get("opponent_turn") = 1 {
-			timer_set("opponent_turn", -1);
-			// Spawn enemy monsters (move somewhere else)
-			spawn_opponent_monster();
-			battle_started = false;
-			turn_to_play = 0;
-        }
-	}
+	} else
+	if attack_turn = 1 {  //opponent starts
+		if (turn_to_play == 0) { // 1st turn
+			if timer_get("opponent_turn") <= 0 {
+				attack_player_init();
+				timer_set("opponent_turn", 50 + irandom(25));
+			}
+			if timer_get("opponent_turn") = 1 {
+				timer_set("opponent_turn", -1);
+				turn_to_play = 1;
+	        }
+	     }
+		 else { // 2nd turn
+	        if timer_get("player_turn") <= 0 {
+	            attack_opponent();
+	            timer_set("player_turn", 50 + irandom(25));
+			
+				if !instance_exists(oMonsterPlayer) && first_move != true { //skip to enemy turn if you don't spawn anything	
+					 timer_set("player_turn", 10);
+				}
+	        }
+			if timer_get("player_turn") = 1 {
+				//no spawns
+				timer_set("player_turn", -1);
+				// Spawn enemy monsters (move somewhere else)
+				spawn_opponent_monster();
+				draw_card_player(); 
+				battle_started = false;
+				turn_to_play = 0;
+	           
+	        }
+		 }
+	} 
+	
+	
 	// Check win condition
 	check_win_condition();
 	show_debug_message("Turn has changed: {0}", turn_to_play);	
 }
 
 
-/// @function                CalculateTotalPower(card_set)
+/// @function                CalculateTotalPower(player_card_set)
 /// @description             Calculate the total power (Attack + Defense) of all monsters on the board for the given card set.
-/// @param {Array}           card_set   The array of monster cards for a player or opponent, with each card having attack, defense, and state attributes.
+/// @param {Array}           player_card_set   The array of monster cards for a player or opponent, with each card having attack, defense, and state attributes.
 /// @return {Number}                     The total power of all monsters on the board for the given card set.
 
 function CalculateTotalPower(argument0) {
@@ -96,7 +132,7 @@ function CalculateTotalPower(argument0) {
     {
         if (set_array[i].state == card_state.on_field)
         {
-            total_power += set_array[i].attack + set_array[i].defense;
+            total_power += set_array[i].defense; //set_array[i].attack +
         }
     }
 
@@ -104,7 +140,7 @@ function CalculateTotalPower(argument0) {
 }
 
 function determine_attack_order() {
-    var player_total_power = CalculateTotalPower(card_set);
+    var player_total_power = CalculateTotalPower(player_card_set);
     var opponent_total_power = CalculateTotalPower(opponent_card_set);
 
     if (player_total_power < opponent_total_power) {
@@ -112,6 +148,12 @@ function determine_attack_order() {
     } else {
         attack_turn = 1; // Set attack_turn to opponent
     }
+	
+	//player always starts on the first turn
+	if (first_move) {
+		attack_turn = 0; 
+		first_move = false; 	
+	}
 }
 
 
@@ -135,8 +177,8 @@ function Start_from_deck(argument0) {
 	repeat(num) draw_card_player(); 
 	/*hand_set =  array_create(num,0);
 	for (var h = 0; h < array_length(hand_set); h++) {
-		hand_set[h] = card_set[h];
-		card_set[h].state = card_state.in_hand; 
+		hand_set[h] = player_card_set[h];
+		player_card_set[h].state = card_state.in_hand; 
 	}*/
 }
 	

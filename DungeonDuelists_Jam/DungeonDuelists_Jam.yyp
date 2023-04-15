@@ -69,6 +69,7 @@
     {"id":{"name":"monster_enemy","path":"sprites/monster_enemy/monster_enemy.yy",},"order":0,},
     {"id":{"name":"GMLiveAPI","path":"scripts/GMLiveAPI/GMLiveAPI.yy",},"order":0,},
     {"id":{"name":"GMLive_compiler","path":"scripts/GMLive_compiler/GMLive_compiler.yy",},"order":0,},
+    {"id":{"name":"Deck_Constructors","path":"scripts/Deck_Constructors/Deck_Constructors.yy",},"order":0,},
     {"id":{"name":"oUI_CardToast","path":"objects/oUI_CardToast/oUI_CardToast.yy",},"order":0,},
     {"id":{"name":"heart_icon","path":"sprites/heart_icon/heart_icon.yy",},"order":0,},
     {"id":{"name":"GMLive_parser","path":"scripts/GMLive_parser/GMLive_parser.yy",},"order":0,},

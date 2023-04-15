@@ -14,28 +14,28 @@ if (global.debugmode) {
 	draw_text( _x,_ymain,"Your Deck:"); 
 
 	draw_set_font(fnt_BodyRegular);
-	for (var i = 0; i < array_length(card_set); i++) 
+	for (var i = 0; i < array_length(player_card_set); i++) 
 	{
 		var _y = _ymain + 20 + 20* i;
-		var _item = card_set[i];
-		if card_set[i].state = card_state.in_hand  {
+		var _item = player_card_set[i];
+		if player_card_set[i].state = card_state.in_hand  {
 			var _text = "- hand" 
 			draw_set_color(c_yellow);
 			draw_text(_x+_x2,_y,_text);
 		}
 		else
-		if card_set[i].state = card_state.on_field  {
+		if player_card_set[i].state = card_state.on_field  {
 			var _text = "- field" 
 			draw_set_color(c_aqua);
 			draw_text(_x+_x2,_y,_text);
 		}
 		else
-		if card_set[i].state = card_state.destroyed  {
+		if player_card_set[i].state = card_state.destroyed  {
 			var _text = "destroyed" 
 			draw_set_color(c_orange);
 			draw_text(_x+_x2,_y,_text);
 		} else
-		if card_set[i].state = card_state.in_deck  {
+		if player_card_set[i].state = card_state.in_deck  {
 			var _text = "- deck" 
 			draw_set_color(c_white);
 			draw_text(_x+_x2,_y,_text);
@@ -88,11 +88,11 @@ if (global.debugmode) {
 	draw_set_alpha(1);
 	
 	//draw available cards
-	var available_cards = array_length(card_set); //subtract unavailable cards		
-	for (var h = 0; h < array_length(card_set); h++) {
-		if (card_set[h].state = card_state.in_hand)
-		or (card_set[h].state = card_state.on_field)
-		or (card_set[h].state = card_state.destroyed)
+	var available_cards = array_length(player_card_set); //subtract unavailable cards		
+	for (var h = 0; h < array_length(player_card_set); h++) {
+		if (player_card_set[h].state = card_state.in_hand)
+		or (player_card_set[h].state = card_state.on_field)
+		or (player_card_set[h].state = card_state.destroyed)
 		{
 			available_cards -=1; 
 		}
@@ -118,7 +118,7 @@ if winner = 0 {
 		m =  lerp(m,50,0.2); 
 	}
 	draw_text(_x,_y,str);
-	draw_text(_x,_y+20,battle_started); 
+	draw_text(_x,_y+20,attack_turn); 
 
 	draw_rectangle(_x-m,_y+20,_x+m,_y+21,0);
 	//draw_sprite_ext(button_primary_empty,0,_x,_y+8,RES,RES,0,c_white,1);
@@ -165,17 +165,17 @@ if winner = 0 {
 #region draw cards left
 	var _y = 70;
 	var destroyed = 0; 
-	for (var h = 0; h < array_length(GameManager.card_set); h++) {
-		if GameManager.card_set[h].state = card_state.destroyed {
+	for (var h = 0; h < array_length(GameManager.player_card_set); h++) {
+		if GameManager.player_card_set[h].state = card_state.destroyed {
 			destroyed +=1; 
 		}
 	}
-	var cards_total = array_length(GameManager.card_set); 
+	var cards_total = array_length(GameManager.player_card_set); 
 	var cards_left = cards_total - destroyed;	
 	draw_set_font(fnt_BodyRegular);
 	
 	var _text = "player"; //calculate turn order by adding up the atk + def of each side. 
-	var player_total_power = CalculateTotalPower(card_set);
+	var player_total_power = CalculateTotalPower(player_card_set);
 	var opponent_total_power = CalculateTotalPower(opponent_card_set);
 	if player_total_power > opponent_total_power _text = "opponent" 
 	

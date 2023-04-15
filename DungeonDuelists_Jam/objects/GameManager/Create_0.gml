@@ -14,6 +14,9 @@
 	}
 	//Setup game states
 	turn_to_play = 0; //player. 1 = AI. 
+	attack_turn = 0; //0 = player, 1 = AI. 
+	game_level  = 1; //there are 3 levels now, each with its own deck 
+	
 	winner = 0; //1 = player 2 = enemy
 	player_HP = 5; HP_max = 5; 
 	opponent_HP = 5; HP_max_opponent = 5; 
@@ -38,19 +41,26 @@ if (live_call()) return live_result;
 	
 #endregion
 
-//GENERATE ENEMY CARDS
+//determine the opponent (move this later if required)
 #region opponent setup
-	deck_init_opponent(8);
+	deck_init_opponent(10); //create space for 10 cards by creating default values (weak monster)
 	
-	switch(room) {
-	case Room1: { //level 1 (easy enemies)
-		opponent_card_set[4] = new Monster_mid();
-		opponent_card_set[5] = new Monster_mid();
-	break
-	}
-		
-		
-	}
+	switch (game_level) {
+    case 1:
+        deck_construct_lvl1();
+        break;
+    case 2:
+        deck_construct_lvl2();
+        break;
+    case 3:
+        deck_construct_lvl3();
+        break;
+    default:
+        show_error("Invalid game level", true);
+        break;
+}
+	
+	
 	deck_shuffle(opponent_card_set); //shuffle
 	
 	

@@ -43,10 +43,7 @@ if (position_meeting(mouse_x, mouse_y, id)) && mouse_check_button_pressed(mb_lef
 		        else
 		            turn_to_play = 1;
 				*/
-				turn_to_play = 0;
-				// Set battle_started to true
-				battle_started = true;
-				
+				battle_started = true;	
 			}
 	    }
 		break;

@@ -4,22 +4,11 @@
 function deck_init_opponent(argument0) {
 	amount = argument0;
 	opponent_card_set = array_create_ext(amount, function() { return new Monster_weak();});
-
-	//To do: create presets here. 
-	
-	//generate 3 weak cards 
 	for (var h = 0; h < 3; h++) {
 		with (opponent_card_set[h]) {
 			Monster_weak();
 		}
 	}
-	////generate 2 mid cards 
-	//for (var h = 3; h < 5; h++) {
-	//	with (opponent_card_set[h]) {
-	//		Monster_mid();
-	//	}
-	//}
-
 }
 
 
@@ -43,8 +32,8 @@ function attack_player_init(){
 function attack_player() {
 		
 var count_on_field = 0; 
-for (var h = 0; h < array_length(card_set); h++) {
-	if card_set[h].state = card_state.on_field {
+for (var h = 0; h < array_length(player_card_set); h++) {
+	if player_card_set[h].state = card_state.on_field {
 		count_on_field +=1; 
 	}
 }

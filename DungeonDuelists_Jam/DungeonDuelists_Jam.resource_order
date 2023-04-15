@@ -41,6 +41,7 @@
     {"name":"monster_enemy","order":7,"path":"sprites/monster_enemy/monster_enemy.yy",},
     {"name":"GMLiveAPI","order":3,"path":"scripts/GMLiveAPI/GMLiveAPI.yy",},
     {"name":"GMLive_compiler","order":1,"path":"scripts/GMLive_compiler/GMLive_compiler.yy",},
+    {"name":"Deck_Constructors","order":8,"path":"scripts/Deck_Constructors/Deck_Constructors.yy",},
     {"name":"oUI_CardToast","order":1,"path":"objects/oUI_CardToast/oUI_CardToast.yy",},
     {"name":"heart_icon","order":8,"path":"sprites/heart_icon/heart_icon.yy",},
     {"name":"GMLive_parser","order":4,"path":"scripts/GMLive_parser/GMLive_parser.yy",},

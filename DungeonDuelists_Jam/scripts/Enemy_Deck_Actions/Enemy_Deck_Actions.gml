@@ -5,7 +5,7 @@
 function spawn_opponent_monster() {
 	var count = 3 - instance_number(oMonsterEnemy);
 	if count > 1 && random(1) < 0.5 count = 1; //20% chance of just spawning one monster.
-	if random(1) < 0.2 count = 0; //spawn nothing sometimes
+	//if random(1) < 0.2 count = 0; //spawn nothing sometimes
 	
 	repeat(count) {
 	    var card_number = 0; //which card number to put on field
@@ -76,12 +76,12 @@ function attack_target_player() {
 	
 	//check how many cards you have left
 	var destroyed = 0; 
-	for (var h = 0; h < array_length(GameManager.card_set); h++) {
-		if GameManager.card_set[h].state = card_state.destroyed {
+	for (var h = 0; h < array_length(GameManager.player_card_set); h++) {
+		if GameManager.player_card_set[h].state = card_state.destroyed {
 			destroyed +=1; 
 		}
 	}
-	var cards_total = array_length(GameManager.card_set); 
+	var cards_total = array_length(GameManager.player_card_set); 
 	var cards_left = cards_total - destroyed;
 	
 	
@@ -94,8 +94,8 @@ function attack_target_player() {
 		var card_plr = card_number; 
 		var targetHP = GameManager.player_HP;  
 			
-		GameManager.card_set[card_opponent].defense -= GameManager.opponent_card_set[card_plr].attack; 
-		if GameManager.card_set[card_opponent].defense <= 0 
+		GameManager.player_card_set[card_opponent].defense -= GameManager.opponent_card_set[card_plr].attack; 
+		if GameManager.player_card_set[card_opponent].defense <= 0 
 		with(target) {
 			if card_opponent = card_number instance_destroy(); 
 		}

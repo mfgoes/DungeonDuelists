@@ -7,10 +7,10 @@ draw_set_halign(fa_center);
 
 if instance_exists(GameManager) 
 {
-	var name = GameManager.card_set[card_number].name;
-	var atk = GameManager.card_set[card_number].attack;
-	var def = GameManager.card_set[card_number].defense;
-	var hp_max = GameManager.card_set[card_number].hp_max;
+	var name = GameManager.player_card_set[card_number].name;
+	var atk = GameManager.player_card_set[card_number].attack;
+	var def = GameManager.player_card_set[card_number].defense;
+	var hp_max = GameManager.player_card_set[card_number].hp_max;
 	
 	draw_set_alpha(image_alpha)
 	//draw_text(x*RES,y*RES,name);

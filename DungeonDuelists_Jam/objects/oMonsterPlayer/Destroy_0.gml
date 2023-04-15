@@ -1,6 +1,6 @@
 /// @description Insert description here
 with (GameManager) {
-	card_set[other.card_number].state = card_state.destroyed;
+	player_card_set[other.card_number].state = card_state.destroyed;
 	card_slots[other.spawn_number] = 0; //reset spawn location1
 }
 dd = instance_create_depth(x,y,depth,oMonsterDeadAnim);

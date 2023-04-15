@@ -1,37 +1,92 @@
 //create the parent monster card
-function Monster_card() constructor {
-	card_type = "monster"
-	name =  "Default name"
-	attack = 0
-	defense = 1
-	hp_max = defense 
-	state = card_state.in_deck
-	identifier = 0; 
-}
 
-//monster types (inherit parent monster card) 
-function Monster_strong() : Monster_card() constructor {
-	card_type = "monster"
-	name =  "Strong Monster"
-	attack = 2
-	defense = 4
-	hp_max = defense 
-}
+#region available cards
+	function Monster_card() constructor {
+		card_type = "monster"
+		name =  "Default name"
+		attack = 0
+		defense = 1
+		hp_max = defense 
+		state = card_state.in_deck
+		identifier = 0; 
+	}
 
-function Monster_weak()  : Monster_card() constructor {
-	card_type = "monster"
-	name =  "Weak Monster"
-	attack = 1
-	defense = 1
-	hp_max = defense 
-}
+	//monster types (inherit parent monster card) 
 
-function Monster_mid()  : Monster_card() constructor {
-	card_type = "monster"
-	name =  "Mid Monster"
-	attack = 2
-	defense = 1
-	hp_max = defense 
-}
+	function Monster_weak()  : Monster_card() constructor { //Weakest monster
+		card_type = "monster"
+		name =  "Tofu Troll"
+		attack = 1
+		defense = 1
+		hp_max = defense 
+	}
 
+	function Monster_2_2()  : Monster_card() constructor {
+		card_type = "monster"
+		name =  "Twiggy Forager"
+		attack = 2
+		defense = 2
+		hp_max = defense 
+	}
+
+	function Monster_1_3()  : Monster_card() constructor {
+		card_type = "monster"
+		name =  "Mirkwood Weaver"
+		attack = 1
+		defense = 3
+		hp_max = defense 
+	}
+
+	function Monster_3_2()  : Monster_card() constructor {
+		card_type = "monster"
+		name =  "Oathbreaker"
+		attack = 3
+		defense = 2
+		hp_max = defense 
+	}
+
+	function Monster_3_3()  : Monster_card() constructor {
+		card_type = "monster"
+		name =  "Shade"
+		attack = 3
+		defense = 3
+		hp_max = defense 
+	}
+
+	function Monster_3_5()  : Monster_card() constructor {
+		card_type = "monster"
+		name =  "Howling Moonbeast"
+		attack = 3
+		defense = 5
+		hp_max = defense 
+	}
+
+	function Monster_5_5() : Monster_card() constructor {
+		card_type = "monster"
+		name =  "Fire Drake"
+		attack = 5
+		defense = 5
+		hp_max = defense 
+	}
+
+	/// Special Monsters
+
+	function Monster_Spiky() : Monster_card() constructor {
+		card_type = "spiky"
+		name =  "Thorned Mûmak"
+		attack = 2
+		defense = 3
+		hp_max = defense 
+	}
+	
+	function Monster_unique() : Monster_card() constructor {
+    card_type = "unique"
+    name =  "Blazing Phoenix"
+    attack = 4
+    defense = 4
+    hp_max = defense 
+    //special_ability = "When this card is defeated, it has a 50% chance to revive with 2 defense points."
+	}
+
+#endregion
 
