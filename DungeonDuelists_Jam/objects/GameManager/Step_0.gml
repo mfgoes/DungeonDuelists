@@ -25,7 +25,7 @@
 timer_init("opponent_turn");
 timer_init("player_turn");
 
-if (battle_started) {
+if (battle_started) && winner = 0 {
     process_turn();
 } else {
     // Check if player already lost

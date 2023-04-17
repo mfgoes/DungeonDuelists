@@ -10,11 +10,13 @@ if instance_exists(GameManager)
 	var card_id = card_number;
 	var atk = GameManager.opponent_card_set[card_number].attack;
 	var def = GameManager.opponent_card_set[card_number].defense;
+	var hp_max = GameManager.opponent_card_set[card_number].hp_max;
+	
 	draw_set_alpha(image_alpha)
 	if (global.debugmode) 
 		draw_text(x*RES,y*RES,card_id);
 	draw_text(x*RES,(y-20)*RES,"atk: " + string(atk));
-	draw_text(x*RES,(y+26)*RES,"hp: " + string(def) + "/" + string(def));
+	draw_text(x*RES,(y+26)*RES,"hp: " + string(def) + "/" + string(hp_max));
 
 }
 

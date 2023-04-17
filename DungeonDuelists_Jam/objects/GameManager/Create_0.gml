@@ -1,39 +1,48 @@
 /// @description generate deck
-
 ///global variables
-#region essential variables
-	global.TEXT_RES = 2; //text resolution (may change in settings later)
-	global.debugmode = false; 
-	#macro TILESIZE 16
-	enum card_state
-	{
-		in_hand,
-		in_deck, 
-		on_field,
-		destroyed	
-	}
-	//Setup game states
-	turn_to_play = 0; //player. 1 = AI. 
-	attack_turn = 0; //0 = player, 1 = AI. 
-	game_level  = 1; //there are 3 levels now, each with its own deck 
-	
-	winner = 0; //1 = player 2 = enemy
-	player_HP = 5; HP_max = 5; 
-	opponent_HP = 5; HP_max_opponent = 5; 
-	RES = global.TEXT_RES; 
-	coins_player = 14;
-	coins_opponent = 5; 
-	draw_card = false; //for both player and opponent
-	first_move = true; //don't draw a card on the first move
-	battle_started = false;
-	
-	//UI animaiton
-	 m = 50; 
-	 
-	 //card visual variables
-	 margin_cards = TILESIZE/2; //make this dynamic later
 
+// Essential Variables
+#region essential variables
+    global.TEXT_RES = 2; //text resolution (may change in settings later)
+    global.debugmode = false;
+    #macro TILESIZE 16
+	// Card Visual Variables
+	#region card visual variables
+	    margin_cards = TILESIZE/2; //make this dynamic later
+	    RES = global.TEXT_RES;
+		m = 50;
+	#endregion
+
+    enum card_state
+    {
+        in_hand,
+        in_deck, 
+        on_field,
+        destroyed 
+    }
 #endregion
+
+// Game State Variables
+#region game state variables
+    turn_to_play = 0; //player. 1 = AI. 
+    attack_turn = 0; //0 = player, 1 = AI.
+    game_level  = 1; //there are 3 levels now, each with its own deck
+    winner = 0; //1 = player 2 = enemy
+    first_move = true; //don't draw a card on the first move
+    battle_started = false;
+#endregion
+
+// Player and Opponent Stats
+#region player and opponent stats
+    player_HP = 3;
+    HP_max = player_HP;
+    opponent_HP = player_HP;
+    HP_max_opponent = opponent_HP;
+    coins_player = 7;
+    coins_opponent = 5;
+    draw_card = false; //for both player and opponent
+#endregion
+
 
 if (live_call()) return live_result;
 #region player setup
@@ -68,22 +77,15 @@ if (live_call()) return live_result;
 	init_card_slots_opponent();
 	spawn_cards_enemy_start(2); //put 2 cards on the field at start of game (slightly different function)
 	
-	//debug
-	opponent_card_set[2].state = card_state.destroyed;
+	////debug
+	//opponent_card_set[3].state = card_state.destroyed;
+	//opponent_card_set[4].state = card_state.destroyed;
+	//opponent_card_set[5].state = card_state.destroyed;
+	//opponent_card_set[6].state = card_state.destroyed;
+	//opponent_card_set[7].state = card_state.destroyed;
+	//opponent_card_set[8].state = card_state.destroyed;
+	//opponent_card_set[9].state = card_state.destroyed;
 		
 #endregion 
 
 
-
-//player turn 
-//draw player card if possible
-//play player cards if possible
-//'attack (end turn)
-
-//enemy turn
-//draw card if possible 
-//spawn cards if possible
-//'attack' (end turn) 
-
-//if extra damage left, damage player/opponent. 
-//if 0 HP left: win / lose scenario

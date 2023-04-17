@@ -10,14 +10,14 @@ if instance_exists(GameManager)
 	var name = GameManager.player_card_set[card_number].name; //was hand set
 	var atk = GameManager.player_card_set[card_number].attack;
 	var def = GameManager.player_card_set[card_number].defense;
+	var cost = GameManager.player_card_set[card_number].cost;
 	draw_set_alpha(image_alpha)
 	draw_set_font(fnt_Bold);
 	draw_text(x*RES,(y-3)*RES,name);
 	draw_set_font(fnt_BodyRegular);
 	draw_text(x*RES,(y-30)*RES,"atk: " + string(atk));
-	draw_text(x*RES,(y+26)*RES,"def: " + string(def));
-	
-	draw_text(x*RES,(y+6)*RES,"pos: " + string(card_pos));
+	draw_text(x*RES,(y+26)*RES,"HP: " + string(def));
+	draw_text(x*RES,(y+6)*RES,"$: " + string(cost));
 
 }
 

@@ -10,10 +10,12 @@ switch btn_type {
 		}
 		break;
 		case (1): {
-			text = "start battle"; //used to be called "end turn" however, since start turns change, this fits better. 
+			text = "start auto battle"; //used to be called "end turn" however, since start turns change, this fits better. 
+			if GameManager.battle_started = true btn_alpha = 0.5; else btn_alpha = 1; 
 		}
 		break;
 		case (2): {
+			btn_alpha = 1; 
 			text = "attack";
 		}
 		break;
@@ -26,7 +28,7 @@ switch btn_type {
 		}
 		break;
 		case (5): {
-			text = "pick a card";
+			text = "pause battle";
 		}
 		break;
 }

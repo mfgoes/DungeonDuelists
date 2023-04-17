@@ -5,8 +5,11 @@
 	
 	function draw_card_player() {
 	
-		//figure out which card to draw
-		with(GameManager) {		
+		//limit card draws to 7
+		var card_count = instance_number(oCardPlayer);
+		var cards_max = 5; 
+		
+		with(GameManager) if card_count < cards_max {		
 			var available_cards = array_length(player_card_set); //available = not in_hand, destroyed, or on_field. This number will selec the "correct" card for the hand. 
 			var cardnumber = 0; //which card number 
 			var cards_in_hand = 0; //this is used to check if you are allowed to draw
@@ -48,14 +51,10 @@
 				 {
 					if available_cards = 0 {
 						show_debug_message("deck is empty"); 
-							dd = instance_create_depth(0,0,0,oUI_CardToast); 
+							dd = instance_create_depth(100,100,0,oUI_CardToast); 
 							dd.str = "deck is empty";
 					}	
-					//else {
-					//	//show_debug_message("too many cards in hand"); 
-					//	//	dd = instance_create_depth(0,0,0,oUI_CardToast); 
-					//	//	dd.str = "too many cards in hand"; 
-					//}	
+					
 				}
 			#endregion
 		}
@@ -107,7 +106,7 @@ function attack_opponent() {
 			} else {	
 			//if no monsters on field, do nothing. 
 			if !instance_exists(oUI_CardToast) {
-				instance_create_depth(0,0,0,oUI_CardToast); 
+				instance_create_depth(100,100,0,oUI_CardToast); 
 			show_debug_message("cannot attack"); 
 			}
 		}
@@ -154,7 +153,7 @@ function attack_target() {
 function increase_mana(argument0) {
 	var points = argument0; 
 	if points =-1 points = 1; 
-
-	if GameManager.coins_player < 10 //temporary maximum for now
+	
+	if GameManager.coins_player < 10
 		GameManager.coins_player+=points; 
 }

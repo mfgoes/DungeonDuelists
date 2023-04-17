@@ -11,6 +11,7 @@ timer_init("attack_end");
 			timer_set("attack_time", spawn_number * 10 + 5); 
 			//timer_set("attack_end",35); 
 			attack_turn = false;	
+			play_sound_atk();
 		}
 	}
 

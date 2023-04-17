@@ -19,13 +19,6 @@ function attack_player_init(){
 		x = xstart; 
 		attack_turn = true; //let the monsters attack
 	}
-	
-	//2: spawn new enemies if possible. amount depends on how many enemies are on board + "luck" 
-	//var count = 3 - instance_number(oMonsterEnemy);
-	//if count > 1 && random(1) < 0.2 count = 1; //20% chance of just spawning one monster. 
-	//repeat(count) { 
-	//	spawn_opponent_monster(); 
-	//}
 }
 
 

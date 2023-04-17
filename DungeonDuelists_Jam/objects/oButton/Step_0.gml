@@ -12,6 +12,8 @@ if (position_meeting(mouse_x, mouse_y, id)) {
 
 //clicking button
 if (position_meeting(mouse_x, mouse_y, id)) && mouse_check_button_pressed(mb_left) {
+	
+	play_sound_btn(); 
 	switch btn_type {
 		case (0): { //destroy card
 			with GameManager {
@@ -19,31 +21,19 @@ if (position_meeting(mouse_x, mouse_y, id)) && mouse_check_button_pressed(mb_lef
 			}
 		}
 		break;
-		case (1): { //start battle
-			/* //old code
-			with(GameManager) {
-				
-				//determine who should start
-				if turn_to_play = 0 { //player turn
-					increase_mana(1); 
-					draw_card_player();
-					attack_opponent();
-					turn_to_play = 1;
+		case (1): { //start battle if you have a monster ready
+			if GameManager.first_move = true && !instance_exists(oMonsterPlayer) {
+				if !instance_exists(oUI_CardToast) {
+					dd = instance_create_depth(x,y+30,0,oUI_CardToast); 
+					dd.str = "add monsters to board to start"; 
 				}
-				//draw_card = false; //reset drawing cards
-			}*/
-			
-			// Determine who should start
-	        with(GameManager) {
-				determine_attack_order(); 
-				
-				/*
-		        if player_total_power <= opponent_total_power
-		            turn_to_play = 0;
-		        else
-		            turn_to_play = 1;
-				*/
-				battle_started = true;	
+			}
+			else {
+				// Determine who should start
+		        with(GameManager) {
+					determine_attack_order(); 
+					battle_started = true;	
+				}
 			}
 	    }
 		break;
@@ -64,9 +54,11 @@ if (position_meeting(mouse_x, mouse_y, id)) && mouse_check_button_pressed(mb_lef
 		}
 		break;
 		case (5): {	//pick card player test
-			with(GameManager) 
-				draw_card_player(); 
-				increase_mana(1); 
+			with(GameManager) {
+				battle_started = false; 
+				determine_attack_order(); 
+				show_debug_message("game paused"); 
+			}
 		}
 		break;
 	}

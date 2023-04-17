@@ -3,8 +3,7 @@
 //// @desc spawn new opponents from deck, if possible
 /// @param {real} amount 
 function spawn_opponent_monster() {
-	var count = 3 - instance_number(oMonsterEnemy);
-	if count > 1 && random(1) < 0.5 count = 1; //20% chance of just spawning one monster.
+	var count = choose(2,3)
 	//if random(1) < 0.2 count = 0; //spawn nothing sometimes
 	
 	repeat(count) {
@@ -112,4 +111,26 @@ function attack_target_player() {
 				show_debug_message("you lost... cards left: {0}/{1}",cards_left,cards_total)
 			}	
 		}
+}
+
+function calculate_remaining_enemies() {
+	var opponents_left = array_length(opponent_card_set);
+    
+    for (var h = 0; h < array_length(opponent_card_set); h++) {
+        if opponent_card_set[h].state == card_state.destroyed {
+            opponents_left -= 1;
+        }
+    }
+    
+    return opponents_left;
+}
+
+function calculate_total_enemies() {
+	var total_enemies = 0; 
+	 for (var h = 0; h < array_length(opponent_card_set); h++) {
+        if opponent_card_set[h].card_type == "monster" {
+            total_enemies += 1; 
+        }
+    }
+	return total_enemies; 
 }

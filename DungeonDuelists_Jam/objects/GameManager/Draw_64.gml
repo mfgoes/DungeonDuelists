@@ -2,7 +2,7 @@
 draw_set_halign(fa_left);
 var RES = global.TEXT_RES;
 
-//if (live_call()) return live_result;
+if (live_call()) return live_result;
 	
 if (global.debugmode) {
 	//UI player cards
@@ -118,7 +118,7 @@ if winner = 0 {
 		m =  lerp(m,50,0.2); 
 	}
 	draw_text(_x,_y,str);
-	draw_text(_x,_y+20,attack_turn); 
+	//draw_text(_x,_y+20,attack_turn); 
 
 	draw_rectangle(_x-m,_y+20,_x+m,_y+21,0);
 	//draw_sprite_ext(button_primary_empty,0,_x,_y+8,RES,RES,0,c_white,1);
@@ -180,6 +180,14 @@ if winner = 0 {
 	if player_total_power > opponent_total_power _text = "opponent" 
 	
 	draw_text(_x,_y,"First turn: " + string(_text) + " Power: " + string(player_total_power) + "vs " + string(opponent_total_power));  
+#endregion
+
+#region draw enemies remaining
+	var _x2 = (room_width - 92) * RES;
+	var _y = 35 * RES;
+	var opponents_total = calculate_total_enemies(); //useful when we add spell cards to their deck later
+	var opponents_left = calculate_remaining_enemies();
+	draw_text(_x2, _y, "Enemies left: " + string(opponents_left) + "/" + string(opponents_total));
 #endregion
 
 //reset

@@ -60,6 +60,7 @@ function process_turn() {
 				}
 	        }
 			if timer_get("player_turn") = 1 {
+				increase_mana(1); 
 				turn_to_play = 1;
 	            timer_set("player_turn", -1);
 	        }
@@ -67,15 +68,16 @@ function process_turn() {
 		 else { // 2nd turn
 	       if timer_get("opponent_turn") <= 0 {
 				attack_player_init();
-				timer_set("opponent_turn", 50 + irandom(25));
+				timer_set("opponent_turn", 30 + irandom(25));
 			}
 			if timer_get("opponent_turn") = 1 {
 				timer_set("opponent_turn", -1);
 				// Spawn enemy monsters (move somewhere else)
 				spawn_opponent_monster();
 				draw_card_player(); 
-				battle_started = false;
+				//battle_started = false;
 				turn_to_play = 0;
+				attack_turn = 1;			//TESTING
 	        }
 		}
 	} else
@@ -103,9 +105,10 @@ function process_turn() {
 				//no spawns
 				timer_set("player_turn", -1);
 				// Spawn enemy monsters (move somewhere else)
-				spawn_opponent_monster();
+				if first_move != true && instance_number(oMonsterEnemy) = 0
+					spawn_opponent_monster();
 				draw_card_player(); 
-				battle_started = false;
+				//battle_started = false;
 				turn_to_play = 0;
 	           
 	        }

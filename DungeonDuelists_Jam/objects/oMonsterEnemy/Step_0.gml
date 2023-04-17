@@ -10,6 +10,7 @@ timer_init("attack_end");
 		if timer_get("attack_time") <= 0 {
 			timer_set("attack_time", card_number * 10 + 5); //to do: fix this
 			attack_turn = false;	
+			//play_sound_atk(); 
 		}
 	}
 

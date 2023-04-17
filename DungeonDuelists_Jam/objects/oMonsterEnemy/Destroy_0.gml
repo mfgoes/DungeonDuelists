@@ -2,6 +2,9 @@
 with (GameManager) {
 	opponent_card_set[other.card_number].state = card_state.destroyed;
 	card_slots_opponent[other.spawn_number] = 0; //reset spawn location1
+	
+	//increase player mana
+	increase_mana(1); 
 }
 
 dd = instance_create_depth(x,y,depth,oMonsterDeadAnim);
