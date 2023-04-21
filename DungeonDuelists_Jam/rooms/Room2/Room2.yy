@@ -14,7 +14,6 @@
     {"name":"inst_2829D0E_1","path":"rooms/Room2/Room2.yy",},
     {"name":"inst_66363774_1","path":"rooms/Room2/Room2.yy",},
     {"name":"inst_D14430F_1","path":"rooms/Room2/Room2.yy",},
-    {"name":"inst_1B92D24A_1","path":"rooms/Room2/Room2.yy",},
   ],
   "isDnd": false,
   "layers": [
@@ -23,16 +22,13 @@
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_757B0E90_1","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"obj_gmlive","path":"objects/obj_gmlive/obj_gmlive.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":16.0,"y":48.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_4CBADB4B_1","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oButton","path":"objects/oButton/oButton.yy",},"properties":[
             {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"oButton","path":"objects/oButton/oButton.yy",},"propertyId":{"name":"btn_type","path":"objects/oButton/oButton.yy",},"value":"4",},
-          ],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":272.0,"y":40.0,},
+          ],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":240.0,"y":40.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_3821E516_1","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"GameManager","path":"objects/GameManager/GameManager.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":16.0,"y":160.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_2829D0E_1","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oStagePlayer","path":"objects/oStagePlayer/oStagePlayer.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":48.0,"y":112.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_66363774_1","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oButton","path":"objects/oButton/oButton.yy",},"properties":[
             {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"oButton","path":"objects/oButton/oButton.yy",},"propertyId":{"name":"btn_type","path":"objects/oButton/oButton.yy",},"value":"1",},
-          ],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":208.0,"y":40.0,},
+          ],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":176.0,"y":40.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_D14430F_1","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oStageEnemy","path":"objects/oStageEnemy/oStageEnemy.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":240.0,"y":112.0,},
-        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_1B92D24A_1","colour":4294967295,"frozen":false,"hasCreationCode":true,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oButton","path":"objects/oButton/oButton.yy",},"properties":[
-            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"oButton","path":"objects/oButton/oButton.yy",},"propertyId":{"name":"btn_type","path":"objects/oButton/oButton.yy",},"value":"2",},
-          ],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":146.0,"y":39.0,},
       ],"layers":[],"properties":[],"userdefinedDepth":false,"visible":true,},
     {"resourceType":"GMRBackgroundLayer","resourceVersion":"1.0","name":"Background","animationFPS":30.0,"animationSpeedType":0,"colour":4286556927,"depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"hspeed":0.0,"htiled":true,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"spriteId":{"name":"tile_bgr","path":"sprites/tile_bgr/tile_bgr.yy",},"stretch":false,"userdefinedAnimFPS":false,"userdefinedDepth":false,"visible":true,"vspeed":0.0,"vtiled":true,"x":0,"y":0,},
   ],

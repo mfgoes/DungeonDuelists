@@ -52,6 +52,19 @@ function deck_constructor_player_basic() {
 }
 
 
+function deck_constructor_player_medium() {
+   player_card_set[0] = new Monster_weak();    // Tofu Troll
+    player_card_set[1] = new Monster_weak();    // Tofu Troll
+    player_card_set[2] = new Monster_2_2();     // Twiggy Forager
+    player_card_set[3] = new Monster_2_2();     // Twiggy Forager
+    player_card_set[4] = new Monster_1_3();     // Mirkwood Weaver
+    player_card_set[5] = new Monster_1_3();     // Mirkwood Weaver
+    player_card_set[6] = new Monster_3_2();     // Oathbreaker
+    player_card_set[7] = new Monster_3_2();     // Oathbreaker
+    player_card_set[8] = new Monster_3_3();     // Shade
+    player_card_set[9] = new Monster_unique(); // Unique card for the player
+}
+
 
 /* 
 Level themes and styling ideas:

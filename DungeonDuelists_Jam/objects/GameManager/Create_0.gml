@@ -41,6 +41,7 @@
     coins_player = 7;
     coins_opponent = 5;
     draw_card = false; //for both player and opponent
+	update_game_level();  //checks which level you are in (can be improved in the future)
 #endregion
 
 
@@ -60,32 +61,24 @@ if (live_call()) return live_result;
         break;
     case 2:
         deck_construct_lvl2();
+		deck_constructor_player_medium(); 
+		deck_shuffle(player_card_set); 
+		 coins_player = 10; 
         break;
     case 3:
         deck_construct_lvl3();
+		coins_player = 10; 
+		
         break;
     default:
         show_error("Invalid game level", true);
         break;
 }
-	
-	
 	deck_shuffle(opponent_card_set); //shuffle
 	
 	
 	//hand_init_opponent(3); //for the MVP, there is no opponent hand. They play directly from the deck. 
 	init_card_slots_opponent();
 	spawn_cards_enemy_start(2); //put 2 cards on the field at start of game (slightly different function)
-	
-	////debug
-	//opponent_card_set[3].state = card_state.destroyed;
-	//opponent_card_set[4].state = card_state.destroyed;
-	//opponent_card_set[5].state = card_state.destroyed;
-	//opponent_card_set[6].state = card_state.destroyed;
-	//opponent_card_set[7].state = card_state.destroyed;
-	//opponent_card_set[8].state = card_state.destroyed;
-	//opponent_card_set[9].state = card_state.destroyed;
-		
 #endregion 
-
 

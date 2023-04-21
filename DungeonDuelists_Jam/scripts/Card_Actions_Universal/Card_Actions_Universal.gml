@@ -185,3 +185,13 @@ function Start_from_deck(argument0) {
 	}*/
 }
 	
+	
+function update_game_level() {
+	//very quick way to change game levels (changes deck)
+	if room = Room2 {
+		game_level = 2; 
+	}
+	if room = Room3 {
+		game_level = 3; 
+	}
+}

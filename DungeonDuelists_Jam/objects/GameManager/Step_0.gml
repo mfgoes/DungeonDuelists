@@ -38,3 +38,6 @@ if (battle_started) && winner = 0 {
         battle_started = false;
     }
 }
+
+// check if display is larger than the window
+scaling_HTML5();

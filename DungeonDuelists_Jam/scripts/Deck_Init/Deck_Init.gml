@@ -11,3 +11,4 @@ Start_from_deck(3); //picks 3 first cards and makes them "in hand"
 init_card_slots(); 
 
 }
+
