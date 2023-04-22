@@ -31,4 +31,14 @@ function font_setup() {
 	
 	self.font_bold = font_add("HelveticaNeue-Bold.otf", 24,false,false,32,127);
 	font_enable_sdf(self.font_bold,true); 
+	
+	
+draw_set_font(fnt_BodyRegular);
+if os_browser != browser_not_a_browser {
+	font_enable_sdf(self.font_bold,false); 	
+	self.font = fnt_BodyRegular;
+	self.font_bold = fnt_Bold;
+	global.RES_TEXT = 1;
+}
+
 }

@@ -3,6 +3,7 @@
 if (live_call()) return live_result;
 draw_set_font(GameManager.font)
 
+
 //show text
 switch btn_type {
 		case (0): {
@@ -38,13 +39,13 @@ switch btn_type {
 //First, calculate the scale factors for the X and Y axes:
 var scaleX = display_get_width() / 840;
 var scaleY = display_get_height() / 480;
-var RES =global.RES_GUI;
+var RES = 2; //global.RES_GUI;
 var RES_T = global.RES_TEXT; 
-
 draw_text(30,100,scaleY); 
 draw_set_halign(fa_center);
 draw_set_alpha(btn_alpha);
-draw_text_transformed((x)*RES,(y-3)*RES,text,RES_T,RES_T,0);
+draw_text((x)*RES,(y-4)*RES,text);
+//draw_text_transformed((x)*RES,(y-3)*RES,text,RES_T,RES_T,0);
 
 draw_set_font(fnt_BodyRegular)
 draw_set_alpha(1);
