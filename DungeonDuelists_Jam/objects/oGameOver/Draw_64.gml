@@ -1,7 +1,7 @@
 /// @description draw button 
 
 if (live_call()) return live_result;
-var RES = global.TEXT_RES;
+var RES =global.RES_GUI;
 draw_set_halign(fa_center);
 draw_set_alpha(btn_alpha);
 

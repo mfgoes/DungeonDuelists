@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "scaling_HTML5",
+  "name": "HTML_RelatedFunctions",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {

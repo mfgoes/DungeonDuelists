@@ -1,7 +1,7 @@
 /// @description Insert description here
 //if (live_call()) return live_result;
 
-var RES = global.TEXT_RES;
+var RES =global.RES_GUI;
 draw_set_halign(fa_center);
 
 

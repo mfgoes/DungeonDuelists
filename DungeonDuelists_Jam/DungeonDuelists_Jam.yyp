@@ -44,6 +44,9 @@
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"regexp.ndll","CopyToMask":0,"filePath":"datafiles/GMLive",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"std.ndll","CopyToMask":0,"filePath":"datafiles/GMLive",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"zlib.ndll","CopyToMask":-1,"filePath":"datafiles/GMLive",},
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"HelveticaNeue-Bold.otf","CopyToMask":-1,"filePath":"datafiles",},
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"Inter-Regular.ttf","CopyToMask":-1,"filePath":"datafiles",},
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"CarlosHandwriting-Regular.ttf","CopyToMask":-1,"filePath":"datafiles",},
   ],
   "isEcma": false,
   "MetaData": {
@@ -68,7 +71,7 @@
     {"id":{"name":"GMLiveAPI_js","path":"scripts/GMLiveAPI_js/GMLiveAPI_js.yy",},"order":0,},
     {"id":{"name":"stage","path":"sprites/stage/stage.yy",},"order":0,},
     {"id":{"name":"fnt_BodyRegular","path":"fonts/fnt_BodyRegular/fnt_BodyRegular.yy",},"order":0,},
-    {"id":{"name":"scaling_HTML5","path":"scripts/scaling_HTML5/scaling_HTML5.yy",},"order":0,},
+    {"id":{"name":"HTML_RelatedFunctions","path":"scripts/HTML_RelatedFunctions/HTML_RelatedFunctions.yy",},"order":0,},
     {"id":{"name":"coin_mana","path":"sprites/coin_mana/coin_mana.yy",},"order":0,},
     {"id":{"name":"TomWinandySFX_UI_ScifiTech_Button_Select_32","path":"sounds/TomWinandySFX_UI_ScifiTech_Button_Select_32/TomWinandySFX_UI_ScifiTech_Button_Select_32.yy",},"order":0,},
     {"id":{"name":"GMLive_seekEval","path":"scripts/GMLive_seekEval/GMLive_seekEval.yy",},"order":0,},

@@ -1,6 +1,6 @@
 /// @description draw arrays
 draw_set_halign(fa_left);
-var RES = global.TEXT_RES;
+var RES =global.RES_GUI;
 
 if (live_call()) return live_result;
 	
@@ -48,13 +48,13 @@ if (global.debugmode) {
 	//draw slots
 	for (var i = 0; i < array_length(card_slots); i++) 
 	{
-		var _y = room_height * global.TEXT_RES - 100 + 20* i;
+		var _y = room_height *global.RES_GUI - 100 + 20* i;
 		draw_text(room_width,_y,"P slots: " + string(card_slots[i])); 
 	}
 	
 	
 	//UI Opponent cards
-	var _x = room_width * global.TEXT_RES-10;
+	var _x = room_width *global.RES_GUI-10;
 	var _y = 100;
 
 	draw_set_halign(fa_right);
@@ -117,7 +117,9 @@ if winner = 0 {
 		str = "Opponents turn"; 
 		m =  lerp(m,50,0.2); 
 	}
-	draw_text(_x,_y,str);
+	var RES_T = global.RES_TEXT;
+	draw_set_font(GameManager.font_bold);
+	draw_text_transformed(_x,_y,str,RES_T,RES_T,0);
 	//draw_text(_x,_y+20,attack_turn); 
 
 	draw_rectangle(_x-m,_y+20,_x+m,_y+21,0);

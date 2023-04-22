@@ -40,7 +40,7 @@
     {"name":"TomWinandySFX_UI_ScifiTech_Button_Select_55","order":8,"path":"sounds/TomWinandySFX_UI_ScifiTech_Button_Select_55/TomWinandySFX_UI_ScifiTech_Button_Select_55.yy",},
     {"name":"GMLiveAPI_js","order":4,"path":"scripts/GMLiveAPI_js/GMLiveAPI_js.yy",},
     {"name":"stage","order":5,"path":"sprites/stage/stage.yy",},
-    {"name":"scaling_HTML5","order":10,"path":"scripts/scaling_HTML5/scaling_HTML5.yy",},
+    {"name":"HTML_RelatedFunctions","order":10,"path":"scripts/HTML_RelatedFunctions/HTML_RelatedFunctions.yy",},
     {"name":"coin_mana","order":9,"path":"sprites/coin_mana/coin_mana.yy",},
     {"name":"TomWinandySFX_UI_ScifiTech_Button_Select_32","order":9,"path":"sounds/TomWinandySFX_UI_ScifiTech_Button_Select_32/TomWinandySFX_UI_ScifiTech_Button_Select_32.yy",},
     {"name":"GMLive_seekEval","order":5,"path":"scripts/GMLive_seekEval/GMLive_seekEval.yy",},

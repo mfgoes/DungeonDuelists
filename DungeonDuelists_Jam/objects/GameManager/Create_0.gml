@@ -3,13 +3,15 @@
 
 // Essential Variables
 #region essential variables
-    global.TEXT_RES = 2; //text resolution (may change in settings later)
+    global.RES_GUI = 2; //text resolution (may change in settings later)
+	global.RES_TEXT = 0.4; //downscaled for font resolution purposes. 0.5 = normal size. 1 = twice as much.
     global.debugmode = false;
+	font_setup(); //adds a font externally
     #macro TILESIZE 16
 	// Card Visual Variables
 	#region card visual variables
 	    margin_cards = TILESIZE/2; //make this dynamic later
-	    RES = global.TEXT_RES;
+	    RES =global.RES_GUI;
 		m = 50;
 	#endregion
 
@@ -20,6 +22,9 @@
         on_field,
         destroyed 
     }
+	
+	
+	
 #endregion
 
 // Game State Variables
