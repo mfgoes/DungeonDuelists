@@ -68,7 +68,7 @@ function process_turn() {
 		 else { // 2nd turn
 	       if timer_get("opponent_turn") <= 0 {
 				attack_player_init();
-				timer_set("opponent_turn", 30 + irandom(25));
+				timer_set("opponent_turn", 50 + irandom(15));
 			}
 			if timer_get("opponent_turn") = 1 {
 				timer_set("opponent_turn", -1);

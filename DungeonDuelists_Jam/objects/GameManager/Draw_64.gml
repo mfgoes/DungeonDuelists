@@ -194,7 +194,10 @@ if winner = 0 {
 
 //reset
 
+#region draw arrow for weakest enemy
 
+
+#endregion
 
 
 

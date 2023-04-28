@@ -14,8 +14,8 @@ function deck_construct_lvl1() {
 
 function deck_construct_lvl2() {
     opponent_card_set[0] = new Monster_2_2();  // Twiggy Forager
-    opponent_card_set[1] = new Monster_2_2();  // Twiggy Forager
-    opponent_card_set[2] = new Monster_1_3();  // Mirkwood Weaver
+    opponent_card_set[1] = new Monster_weak();  // Twiggy Forager
+    opponent_card_set[2] = new Monster_weak();  // Mirkwood Weaver
     opponent_card_set[3] = new Monster_1_3();  // Mirkwood Weaver
     opponent_card_set[4] = new Monster_1_3();  // Mirkwood Weaver
     opponent_card_set[5] = new Monster_3_2();    //  Shade
@@ -26,8 +26,8 @@ function deck_construct_lvl2() {
 }
 
 function deck_construct_lvl3() {
-    opponent_card_set[0] = new Monster_3_2();    //  Shade
-    opponent_card_set[1] = new Monster_3_2();    //  Shade
+    opponent_card_set[0] = new Monster_weak();    //  Shade
+    opponent_card_set[1] = new Monster_weak();    //  Shade
     opponent_card_set[2] = new Monster_3_5();  // Howling Moonbeast
     opponent_card_set[3] = new Monster_3_5();  // Howling Moonbeast
     opponent_card_set[4] = new Monster_5_5();  // Fire Drake

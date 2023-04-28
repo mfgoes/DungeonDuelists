@@ -134,3 +134,34 @@ function calculate_total_enemies() {
     }
 	return total_enemies; 
 }
+
+
+// Find the on_field player monster with the lowest defense
+function find_lowest_defense_player_monster() {
+	
+	with(GameManager) {
+	    var lowest_defense = -1;
+	    var lowest_defense_player_monster = noone;
+
+	    for (var i = 0; i < array_length(player_card_set); i++) {
+	        var card_current = player_card_set[i];
+	        if (card_current.state == card_state.on_field) {
+	            // Find the instance of the player monster associated with the current card
+	            var player_monster_instance = noone;
+	            with (oMonsterPlayer) {
+	                if (card_number == i) {
+	                    player_monster_instance = id;
+	                    break;
+	                }
+	            }
+	            // Compare and find the player monster with the lowest defense
+	            if (player_monster_instance != noone && (lowest_defense == -1 || card_current.defense < lowest_defense)) {
+	                lowest_defense = card_current.defense;
+	                lowest_defense_player_monster = player_monster_instance;
+	            }
+	        }
+	    }
+
+	    return lowest_defense_player_monster;
+	}
+}

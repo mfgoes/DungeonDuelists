@@ -33,6 +33,7 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Public","folderPath":"folders/Extensions/GMLive/Public.yy","order":0,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"UI stuff","folderPath":"folders/Objects/UI stuff.yy","order":0,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Less important","folderPath":"folders/Objects/Less important.yy","order":0,},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Constructors","folderPath":"folders/Scripts/Constructors.yy","order":0,},
   ],
   "IncludedFiles": [
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"gcmt-dll.dll","CopyToMask":0,"filePath":"datafiles/GMLive",},
@@ -111,6 +112,7 @@
     {"id":{"name":"oMonsterPlayer","path":"objects/oMonsterPlayer/oMonsterPlayer.yy",},"order":0,},
     {"id":{"name":"monster","path":"sprites/monster/monster.yy",},"order":0,},
     {"id":{"name":"Room3","path":"rooms/Room3/Room3.yy",},"order":0,},
+    {"id":{"name":"arrow_simple_down","path":"sprites/arrow_simple_down/arrow_simple_down.yy",},"order":0,},
     {"id":{"name":"obj_gmlive","path":"objects/obj_gmlive/obj_gmlive.yy",},"order":0,},
     {"id":{"name":"GMLive","path":"scripts/GMLive/GMLive.yy",},"order":0,},
     {"id":{"name":"Special_Click_02","path":"sounds/Special_Click_02/Special_Click_02.yy",},"order":0,},

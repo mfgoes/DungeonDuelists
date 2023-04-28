@@ -117,33 +117,54 @@ function attack_opponent() {
 	
 	
 function attack_target() {
-	///@desc attacks a target on the opposite side
-		
-	//set arg to target. create seperate function list for 'used by both opponent and player' 
-	if instance_exists(oMonsterEnemy) {
-		//attack monsters	
-		var target = oMonsterEnemy;
-		var card_opponent = oMonsterEnemy.card_number;
-		var card_plr = card_number; 
-			
-		GameManager.opponent_card_set[card_opponent].defense -= GameManager.player_card_set[card_plr].attack; 
-		if GameManager.opponent_card_set[card_opponent].defense <= 0 
-		with(target) {
-			if card_opponent = card_number instance_destroy(); 
-		}
-		//if less than zero, do difference damage to opponent directly
-	}
-	else {
-		//attack opponent directly	
-		var card_plr = card_number; 
-		GameManager.opponent_HP -= GameManager.player_card_set[card_plr].attack; 
-		if GameManager.opponent_HP <= 0 { //defeat oponnent 
-			{
-				GameManager.winner = 1;
-				show_debug_message("you won!")
-			}	
-		}
-	}
+    ///@desc attacks a target on the opposite side
+
+    // Set arg to target
+    var target = find_lowest_defense_enemy();
+
+    // If there's no target with the lowest defense, try to find any other on-field monster
+    if (target == noone) {
+        for (var i = 0; i < array_length(GameManager.opponent_card_set); i++) {
+            var card_current = GameManager.opponent_card_set[i];
+            if (card_current.state == card_state.on_field) {
+                with (oMonsterEnemy) {
+                    if (card_number == i) {
+                        target = id;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    // If there's still no target, exit the function
+    if (target == noone) {
+        show_debug_message("No enemies on the field to attack");
+        return;
+    }
+
+    // Attack monsters
+    var card_opponent = target.card_number;
+    var card_plr = card_number;
+
+    GameManager.opponent_card_set[card_opponent].defense -= GameManager.player_card_set[card_plr].attack;
+
+    if (GameManager.opponent_card_set[card_opponent].defense <= 0) {
+        with (target) {
+            if (card_opponent == card_number) {
+                instance_destroy();
+            }
+        }
+    } else {
+        // Attack opponent directly
+        var card_plr = card_number;
+        GameManager.opponent_HP -= GameManager.player_card_set[card_plr].attack;
+        if (GameManager.opponent_HP <= 0) {
+            // Defeat opponent
+            GameManager.winner = 1;
+            show_debug_message("you won!");
+        }
+    }
 }
 	
 #endregion
@@ -156,4 +177,33 @@ function increase_mana(argument0) {
 	
 	if GameManager.coins_player < 10
 		GameManager.coins_player+=points; 
+}
+
+// Find the on_field opponent enemy with the lowest defense
+function find_lowest_defense_enemy() {
+    with(GameManager) {
+		var lowest_defense = -1;
+	    var lowest_defense_enemy = noone;
+
+	    for (var i = 0; i < array_length(opponent_card_set); i++) {
+	        var card_current = opponent_card_set[i];
+	        if (card_current.state == card_state.on_field) {
+	            // Find the instance of the enemy associated with the current card
+	            var enemy_instance = noone;
+	            with (oMonsterEnemy) {
+	                if (card_number == i) {
+	                    enemy_instance = id;
+	                    break;
+	                }
+	            }
+	            // Compare and find the enemy with the lowest defense
+	            if (enemy_instance != noone && (lowest_defense == -1 || card_current.defense < lowest_defense)) {
+	                lowest_defense = card_current.defense;
+	                lowest_defense_enemy = enemy_instance;
+	            }
+	        }
+	    }
+	}
+
+    return lowest_defense_enemy;
 }
