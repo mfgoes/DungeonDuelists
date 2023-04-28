@@ -43,9 +43,7 @@ if (position_meeting(mouse_x, mouse_y, id)) && mouse_check_button_pressed(mb_lef
 		}
 		break;
 		case (3): {	//restart
-			deck_shuffle(player_card_set);
 			room_restart();
-			
 		}
 		break;
 		case (4): {	//go to next level

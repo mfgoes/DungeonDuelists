@@ -10,3 +10,4 @@ entrance_anim = true;
 attack_turn = false;
 anim_end = false; 
 start_attack = false;
+

@@ -96,7 +96,7 @@ function attack_opponent() {
 			}
 		}
 			if count_on_field > 0 { //also check if it's still the player's turn
-				show_debug_message("attacking opponent..."); 
+				show_debug_message("going to attackt..."); 
 				//set attack turn for all oMonsterPlayer
 				with (oMonsterPlayer) {
 					x = xstart;
@@ -116,17 +116,23 @@ function attack_opponent() {
 	
 	
 	
-function attack_target() {
+function attack_target() { //attacks first target
 	///@desc attacks a target on the opposite side
 		
-	//set arg to target. create seperate function list for 'used by both opponent and player' 
+	//target the weakest enemy
 	if instance_exists(oMonsterEnemy) {
 		//attack monsters	
-		var target = oMonsterEnemy;
+		var target = find_lowest_defense_enemy(); //oMonsterEnemy
 		var card_opponent = oMonsterEnemy.card_number;
 		var card_plr = card_number; 
 			
 		GameManager.opponent_card_set[card_opponent].defense -= GameManager.player_card_set[card_plr].attack; 
+		
+		dd = instance_create_depth(target.x-10+random_range(-20,20),target.y+random_range(0,-5),0,oUI_CardToast)
+		var damage_counter = GameManager.player_card_set[card_plr].attack; 
+		dd.str = ("-" + string(damage_counter)); 
+		dd.toast_type = variant.damage; dd._y += 7; dd._x -=7; 
+		
 		if GameManager.opponent_card_set[card_opponent].defense <= 0 
 		with(target) {
 			if card_opponent = card_number instance_destroy(); 
@@ -145,7 +151,76 @@ function attack_target() {
 		}
 	}
 }
-	
+
+function attack_target_weakest() {
+    ///@desc attacks a target on the opposite side
+        
+    //target the weakest enemy
+    if instance_exists(oMonsterEnemy) {
+        //attack monsters
+        var target = noone;
+        var lowest_defense = real;
+        var card_opponent = -1;
+        var card_plr = card_number;
+        var candidates = [];
+
+        // Find the monsters on the field
+        for (var i = 0; i < 3; i++) {
+            if (instance_exists(GameManager.opponent_card_set[i]) && GameManager.opponent_card_set[i].state == GameManager.card_state.on_field) {
+                var len = array_length(candidates);
+                array_push(candidates, i);
+            }
+        }
+
+        // Find the monster with the lowest defense
+        for (var i = 0; i < array_length(candidates); i++) {
+            var card_index = candidates[i];
+            var defense = GameManager.opponent_card_set[card_index].defense;
+            if (defense < lowest_defense) {
+                lowest_defense = defense;
+                card_opponent = card_index;
+                target = GameManager.opponent_card_set[card_index];
+				show_debug_message("attacking weakest...")
+            } else if (defense == lowest_defense) {
+                // If multiple monsters have the same defense, choose one at random
+                if (random(1) < 0.5) {
+                    card_opponent = card_index;
+                    target = GameManager.opponent_card_set[card_index];
+					show_debug_message("attacking random",target); 
+                }
+            }
+        }
+
+        // Attack the weakest monster
+        if (card_opponent != -1) {
+            GameManager.opponent_card_set[card_opponent].defense -= GameManager.player_card_set[card_plr].attack;
+            if (GameManager.opponent_card_set[card_opponent].defense <= 0) {
+                with (oMonsterEnemy) {
+                    if (card_number == card_opponent) {
+                        instance_destroy();
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #endregion
 
 ///@description increases mana by X amount (ie at the end of a turn) 

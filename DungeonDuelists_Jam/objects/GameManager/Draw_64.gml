@@ -44,6 +44,8 @@ if (global.debugmode) {
 		draw_set_color(c_white);
 		draw_text(_x,_y,string(_item.name + ", atk: " + string(_item.attack))); 
 	}
+	
+	draw_set_font(fnt_Bold);
 
 	//draw slots
 	for (var i = 0; i < array_length(card_slots); i++) 
@@ -191,8 +193,6 @@ if winner = 0 {
 	var opponents_left = calculate_remaining_enemies();
 	draw_text(_x2, _y, "Enemies left: " + string(opponents_left) + "/" + string(opponents_total));
 #endregion
-
-//reset
 
 
 

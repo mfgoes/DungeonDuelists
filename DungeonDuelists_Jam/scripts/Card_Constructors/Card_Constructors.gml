@@ -20,6 +20,7 @@
 		attack = 1
 		defense = 2
 		hp_max = defense 
+		cost = 0; //this card is free
 	}
 
 	function Monster_2_2()  : Monster_card() constructor {
@@ -28,6 +29,7 @@
 		attack = 2
 		defense = 3
 		hp_max = defense 
+		cost = 0; //this card is free
 	}
 
 	function Monster_1_3()  : Monster_card() constructor {
@@ -36,7 +38,7 @@
 		attack = 1
 		defense = 4
 		hp_max = defense
-		cost = 2
+		cost = 1
 	}
 
 	function Monster_3_2()  : Monster_card() constructor {
@@ -45,7 +47,7 @@
 		attack = 3
 		defense = 3
 		hp_max = defense 
-		cost = 3
+		cost = 1
 	}
 
 	function Monster_3_3()  : Monster_card() constructor {
@@ -54,7 +56,7 @@
 		attack = 3
 		defense = 4
 		hp_max = defense 
-		cost = 3
+		cost = 2
 	}
 
 	function Monster_3_5()  : Monster_card() constructor {
@@ -63,7 +65,7 @@
 		attack = 3
 		defense = 6
 		hp_max = defense 
-		cost = 3
+		cost = 2
 	}
 
 	function Monster_5_5() : Monster_card() constructor {
@@ -92,7 +94,7 @@
     attack = 4
     defense = 6
     hp_max = defense 
-	cost = 5
+	cost = 3
     //special_ability = "When this card is defeated, it has a 50% chance to revive with 2 defense points."
 	}
 

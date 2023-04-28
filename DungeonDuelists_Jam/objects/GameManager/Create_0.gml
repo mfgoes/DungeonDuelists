@@ -43,7 +43,7 @@
     HP_max = player_HP;
     opponent_HP = player_HP;
     HP_max_opponent = opponent_HP;
-    coins_player = 7;
+    coins_player = 5;
     coins_opponent = 5;
     draw_card = false; //for both player and opponent
 	update_game_level();  //checks which level you are in (can be improved in the future)
