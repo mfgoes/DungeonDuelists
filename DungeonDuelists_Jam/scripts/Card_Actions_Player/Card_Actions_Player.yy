@@ -5,7 +5,7 @@
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
-    "name": "Deck Essentials",
-    "path": "folders/Scripts/Deck Essentials.yy",
+    "name": "Scripts",
+    "path": "folders/Scripts.yy",
   },
 }

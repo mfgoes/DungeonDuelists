@@ -53,13 +53,14 @@ function process_turn() {
 	        // Handle player's turn logic
 			if timer_get("player_turn") <= 0 {
 	            attack_opponent();
-	            timer_set("player_turn", 70 + irandom(25));
+	            timer_set("player_turn", 50 + irandom(25));
 			
 				if !instance_exists(oMonsterPlayer) && first_move != true { //skip to enemy turn if you don't spawn anything	
 					 timer_set("player_turn", 10);
 				}
 	        }
 			if timer_get("player_turn") = 1 {
+				increase_mana(1); 
 				turn_to_play = 1;
 	            timer_set("player_turn", -1);
 	        }
@@ -67,8 +68,7 @@ function process_turn() {
 		 else { // 2nd turn
 	       if timer_get("opponent_turn") <= 0 {
 				attack_player_init();
-				increase_mana(1); 
-				timer_set("opponent_turn", 50 + irandom(15));
+				timer_set("opponent_turn", 30 + irandom(25));
 			}
 			if timer_get("opponent_turn") = 1 {
 				timer_set("opponent_turn", -1);
@@ -90,7 +90,6 @@ function process_turn() {
 			if timer_get("opponent_turn") = 1 {
 				timer_set("opponent_turn", -1);
 				turn_to_play = 1;
-				increase_mana(1); 
 	        }
 	     }
 		 else { // 2nd turn
@@ -119,7 +118,7 @@ function process_turn() {
 	
 	// Check win condition
 	check_win_condition();
-	//show_debug_message("Turn has changed: {0}", turn_to_play);	
+	show_debug_message("Turn has changed: {0}", turn_to_play);	
 }
 
 
@@ -195,63 +194,4 @@ function update_game_level() {
 	if room = Room3 {
 		game_level = 3; 
 	}
-}
-
-
-// Find the on_field opponent enemy with the lowest defense
-function find_lowest_defense_enemy() {
-	var lowest_defense = -1;
-    var lowest_defense_enemy = noone;
-	
-	with GameManager {
-    for (var i = 0; i < array_length(opponent_card_set); i++) {
-        var card_current = opponent_card_set[i];
-        if (card_current.state == card_state.on_field) {
-            // Find the instance of the enemy associated with the current card
-            var enemy_instance = noone;
-            with (oMonsterEnemy) {
-                if (card_number == i) {
-                    enemy_instance = id;
-                    break;
-                }
-            }
-            // Compare and find the enemy with the lowest defense
-            if (enemy_instance != noone && (lowest_defense == -1 || card_current.defense < lowest_defense)) {
-                lowest_defense = card_current.defense;
-                lowest_defense_enemy = enemy_instance;
-            }
-        }
-    }
-	}
-    return lowest_defense_enemy;
-}
-
-// Find the on_field player monster with the lowest defense
-function find_lowest_defense_player_monster() {
-    var lowest_defense = -1;
-    var lowest_defense_player_monster = noone;
-
-    with(GameManager)
-	{
-		for (var i = 0; i < array_length(player_card_set); i++) {
-        var card_current = player_card_set[i];
-        if (card_current.state == card_state.on_field) {
-            // Find the instance of the player monster associated with the current card
-            var player_monster_instance = noone;
-            with (oMonsterPlayer) {
-                if (card_number == i) {
-                    player_monster_instance = id;
-                    break;
-                }
-            }
-            // Compare and find the player monster with the lowest defense
-            if (player_monster_instance != noone && (lowest_defense == -1 || card_current.defense < lowest_defense)) {
-                lowest_defense = card_current.defense;
-                lowest_defense_player_monster = player_monster_instance;
-            }
-        }
-    }
-	}
-
-    return lowest_defense_player_monster;
 }

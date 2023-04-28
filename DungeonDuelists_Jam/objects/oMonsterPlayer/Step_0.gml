@@ -19,6 +19,7 @@ timer_init("attack_end");
 		if timer_get("attack_time") = 0 {
 			start_attack = true; 
 			attack_target();
+		
 		}
 
 		if start_attack = true {
