@@ -122,7 +122,7 @@ function attack_target() {
     // Set arg to target
     var target = find_lowest_defense_enemy();
 
-    // If there's no target with the lowest defense, try to find any other on-field monster
+    // Check if there are any other on-field monsters if the lowest defense monster is destroyed
     if (target == noone) {
         for (var i = 0; i < array_length(GameManager.opponent_card_set); i++) {
             var card_current = GameManager.opponent_card_set[i];
@@ -137,9 +137,16 @@ function attack_target() {
         }
     }
 
-    // If there's still no target, exit the function
+    // If there's still no target, attack opponent directly
     if (target == noone) {
-        show_debug_message("No enemies on the field to attack");
+        show_debug_message("No enemies on the field to attack, attacking opponent directly");
+        var card_plr = card_number;
+        GameManager.opponent_HP -= GameManager.player_card_set[card_plr].attack;
+        if (GameManager.opponent_HP <= 0) {
+            // Defeat opponent
+            GameManager.winner = 1;
+            show_debug_message("you won!");
+        }
         return;
     }
 
@@ -148,21 +155,11 @@ function attack_target() {
     var card_plr = card_number;
 
     GameManager.opponent_card_set[card_opponent].defense -= GameManager.player_card_set[card_plr].attack;
-
     if (GameManager.opponent_card_set[card_opponent].defense <= 0) {
         with (target) {
             if (card_opponent == card_number) {
                 instance_destroy();
             }
-        }
-    } else {
-        // Attack opponent directly
-        var card_plr = card_number;
-        GameManager.opponent_HP -= GameManager.player_card_set[card_plr].attack;
-        if (GameManager.opponent_HP <= 0) {
-            // Defeat opponent
-            GameManager.winner = 1;
-            show_debug_message("you won!");
         }
     }
 }

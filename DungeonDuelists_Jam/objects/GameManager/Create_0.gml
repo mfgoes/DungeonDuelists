@@ -35,6 +35,7 @@
     winner = 0; //1 = player 2 = enemy
     first_move = true; //don't draw a card on the first move
     battle_started = false;
+	depth = -100;
 #endregion
 
 // Player and Opponent Stats

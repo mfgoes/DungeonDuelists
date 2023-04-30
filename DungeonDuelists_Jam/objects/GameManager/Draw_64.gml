@@ -192,13 +192,4 @@ if winner = 0 {
 	draw_text(_x2, _y, "Enemies left: " + string(opponents_left) + "/" + string(opponents_total));
 #endregion
 
-//reset
-
-#region draw arrow for weakest enemy
-
-
-#endregion
-
-
-
 

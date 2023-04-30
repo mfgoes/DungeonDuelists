@@ -28,8 +28,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "deck",
-    "path": "sprites/deck/deck.yy",
+    "name": "sDeck",
+    "path": "sprites/sDeck/sDeck.yy",
   },
   "spriteMaskId": null,
   "visible": true,
