@@ -83,34 +83,43 @@ function attack_target_player() {
 	var cards_total = array_length(GameManager.player_card_set); 
 	var cards_left = cards_total - destroyed;
 	
-	
+	 var target = noone;
+	 var card_opponent = -1;
+	 var lowest_defense = 99999;
 		
-	//set arg to target. create seperate function list for 'used by both opponent and player' 
-	if instance_exists(oMonsterPlayer) {
-		//attack monsters	
-		var target = oMonsterPlayer;
-		var card_opponent = oMonsterPlayer.card_number;
-		var card_plr = card_number; 
-		var targetHP = GameManager.player_HP;  
-			
-		GameManager.player_card_set[card_opponent].defense -= GameManager.opponent_card_set[card_plr].attack; 
-		if GameManager.player_card_set[card_opponent].defense <= 0 
-		with(target) {
-			if card_opponent = card_number instance_destroy(); 
-		}
-		//if less than zero, do difference damage to opponent directly
-	}
-	else { //attack player directly
-		show_debug_message("attacking player directly")
-		GameManager.player_HP -= 1;
-		}
-		if GameManager.player_HP = 0 {
-			{
-				//defeat player 
-				GameManager.winner = 2;
-				show_debug_message("you lost... cards left: {0}/{1}",cards_left,cards_total)
-			}	
-		}
+	with (oMonsterPlayer) {
+        if (GameManager.player_card_set[card_number].defense < lowest_defense) {
+            lowest_defense = GameManager.player_card_set[card_number].defense;
+            target = id;
+            card_opponent = card_number;
+        }
+    }
+	
+	// Check if a target was found
+    if (target != noone) {
+        // Attack monsters
+        var card_plr = card_number;
+
+        GameManager.player_card_set[card_opponent].defense -= GameManager.opponent_card_set[card_plr].attack;
+        flash_monster(target);
+        if (GameManager.player_card_set[card_opponent].defense <= 0) {
+            with (target) {
+                if (card_opponent == card_number) {
+                    instance_destroy();
+                }
+            }
+        }
+        // If less than zero, do difference damage to opponent directly
+    } else {
+        // Attack player directly
+        show_debug_message("attacking player directly");
+        GameManager.player_HP -= 1;
+    }
+    if (GameManager.player_HP == 0) {
+        // Defeat player
+        GameManager.winner = 2;
+        show_debug_message("you lost... cards left: {0}/{1}", cards_left, cards_total);
+    }
 }
 
 function calculate_remaining_enemies() {

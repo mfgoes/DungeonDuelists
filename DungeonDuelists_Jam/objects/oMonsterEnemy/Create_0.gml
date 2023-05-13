@@ -10,3 +10,7 @@ entrance_anim = true;
 attack_turn = false;
 anim_end = false; 
 start_attack = false;
+
+//flash effect
+flash_duration = 30; // Duration of the flash in frames (30 frames = 1 second at 30 FPS)
+flash_timer = 0; // A timer to keep track of the flashing effect

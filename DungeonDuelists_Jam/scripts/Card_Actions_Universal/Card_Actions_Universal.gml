@@ -122,6 +122,45 @@ function process_turn() {
 }
 
 
+function process_turnv2() {
+    // Alternate the turn_to_play variable between 0 and 1
+    turn_to_play = 1 - turn_to_play;
+
+    if (turn_to_play == 0) {
+        // Handle player's turn logic
+        if timer_get("player_turn") <= 0 {
+            attack_opponent();
+            timer_set("player_turn", 100 + irandom(25));
+
+            if !instance_exists(oMonsterPlayer) && first_move != true {
+                timer_set("player_turn", 10);
+            }
+        }
+        if timer_get("player_turn") == 1 {
+            increase_mana(1);
+            timer_set("player_turn", -1);
+        }
+    } else {
+        // Handle opponent's turn logic
+        if timer_get("opponent_turn") <= 0 {
+            attack_player_init();
+            timer_set("opponent_turn", 100 + irandom(15));
+        }
+        if timer_get("opponent_turn") == 1 {
+            timer_set("opponent_turn", -1);
+            // Spawn enemy monsters (move somewhere else)
+            spawn_opponent_monster();
+            draw_card_player();
+            //battle_started = false;
+        }
+    }
+
+    // Check win condition
+    check_win_condition();
+    show_debug_message("Turn has changed: {0}", turn_to_play);
+}
+
+
 /// @function                CalculateTotalPower(player_card_set)
 /// @description             Calculate the total power (Attack + Defense) of all monsters on the board for the given card set.
 /// @param {Array}           player_card_set   The array of monster cards for a player or opponent, with each card having attack, defense, and state attributes.
@@ -194,4 +233,9 @@ function update_game_level() {
 	if room = Room3 {
 		game_level = 3; 
 	}
+}
+	
+	
+function flash_monster(monster) {
+    monster.flash_timer = monster.flash_duration;
 }

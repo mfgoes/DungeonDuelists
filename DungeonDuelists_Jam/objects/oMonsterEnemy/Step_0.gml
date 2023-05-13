@@ -43,3 +43,10 @@ timer_init("attack_end");
 	}
 	if image_alpha < 1 image_alpha +=0.05; 
 #endregion
+
+#region flash animation
+	// If the flash_timer is greater than 0, decrease it
+	if (flash_timer > 0) {
+	    flash_timer--;
+	}
+#endregion

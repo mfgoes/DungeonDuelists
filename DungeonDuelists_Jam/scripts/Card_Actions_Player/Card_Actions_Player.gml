@@ -100,16 +100,13 @@ function attack_opponent() {
 				//set attack turn for all oMonsterPlayer
 				with (oMonsterPlayer) {
 					x = xstart;
-					attack_turn = true; 
+					attack_turn_player = true; 
 				}
 				
-			} else {	
-			//if no monsters on field, do nothing. 
-			if !instance_exists(oUI_CardToast) {
-				instance_create_depth(100,100,0,oUI_CardToast); 
-			show_debug_message("cannot attack"); 
+			} 
+			else {	
+				show_debug_message("cannot attack"); 	//if no player monsters on field, do nothing. 
 			}
-		}
 	}
 }
 	
@@ -121,7 +118,7 @@ function attack_target() {
 
     // Set arg to target
     var target = find_lowest_defense_enemy();
-
+	
     // Check if there are any other on-field monsters if the lowest defense monster is destroyed
     if (target == noone) {
         for (var i = 0; i < array_length(GameManager.opponent_card_set); i++) {
@@ -142,7 +139,7 @@ function attack_target() {
         show_debug_message("No enemies on the field to attack, attacking opponent directly");
         var card_plr = card_number;
         GameManager.opponent_HP -= GameManager.player_card_set[card_plr].attack;
-        if (GameManager.opponent_HP <= 0) {
+		if (GameManager.opponent_HP <= 0) {
             // Defeat opponent
             GameManager.winner = 1;
             show_debug_message("you won!");
@@ -155,9 +152,11 @@ function attack_target() {
     var card_plr = card_number;
 
     GameManager.opponent_card_set[card_opponent].defense -= GameManager.player_card_set[card_plr].attack;
+	flash_monster(target); // Call the flash_monster function when the target is hit
     if (GameManager.opponent_card_set[card_opponent].defense <= 0) {
         with (target) {
             if (card_opponent == card_number) {
+				flash_monster(target); 
                 instance_destroy();
             }
         }
