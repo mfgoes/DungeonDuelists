@@ -16,6 +16,11 @@
 	            break;
 	        }
 	    }
+		if (spawn_number == -1) { //no free slot, don't spawn
+			show_debug_message("Board full. Cannot spawn");
+			player_card_set[other.card_number].state = card_state.destroyed;
+			return;
+		}
 
 		var _x = target.x + 20 + 34 * spawn_number;
 		var _y = target.y - 10; 

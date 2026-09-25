@@ -31,6 +31,7 @@ if mouse_check_button_pressed(mb_left) && (position_meeting(mouse_x, mouse_y, id
 		//check if you have enough mana. also check monsters on board
 		var mana_cost = GameManager.player_card_set[card_number].cost; //GameManager.player_card_set[card_number].attack;
 		var monsters_on_board = instance_number(oMonsterPlayer); 
+		with (oCardPlayer) if card_active = true monsters_on_board++; //cards waiting to spawn also take a slot
 	
 		if GameManager.coins_player >= mana_cost && monsters_on_board < 3 {
 			if card_active = false {
@@ -46,7 +47,7 @@ if mouse_check_button_pressed(mb_left) && (position_meeting(mouse_x, mouse_y, id
 		else {
 			//write that it's too expensive
 			dd = instance_create_depth(x,y-100,0,oUI_CardToast); 
-			dd.str = "not enough mana"; if monsters_on_board = 3 dd.str = "too many monsters on board"; 
+			dd.str = "not enough mana"; if monsters_on_board >= 3 dd.str = "too many monsters on board"; 
 			play_sound_error(); 
 		}
 	}

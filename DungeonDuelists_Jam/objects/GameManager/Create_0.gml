@@ -67,8 +67,6 @@ if (live_call()) return live_result;
         break;
     case 2:
         deck_construct_lvl2();
-		deck_constructor_player_medium(); 
-		deck_shuffle(player_card_set); 
 		 coins_player = 10; 
         break;
     case 3:
