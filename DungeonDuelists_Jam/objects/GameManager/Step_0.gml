@@ -14,6 +14,7 @@
 	}
 	
 	if (keyboard_check_pressed(vk_escape)) {
+		global.level = 0; //back to the first level
 		game_restart(); 	
 	}
 	if (keyboard_check_pressed(ord("9"))) || (keyboard_check_pressed(ord("1"))) {

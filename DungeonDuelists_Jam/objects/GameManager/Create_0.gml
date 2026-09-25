@@ -31,7 +31,9 @@
 #region game state variables
     turn_to_play = 0; //player. 1 = AI. 
     attack_turn = 0; //0 = player, 1 = AI.
-    game_level  = 1; //there are 3 levels now, each with its own deck
+	if (!variable_global_exists("level")) global.level = 0; //index into level_data(). survives room_restart
+	var _levels = level_data();
+	level_info = _levels[global.level];
     winner = 0; //1 = player 2 = enemy
     first_move = true; //don't draw a card on the first move
     battle_started = false;
@@ -44,40 +46,22 @@
     HP_max = player_HP;
     opponent_HP = player_HP;
     HP_max_opponent = opponent_HP;
-    coins_player = 7;
+    coins_player = level_info.coins;
     coins_opponent = 5;
     draw_card = false; //for both player and opponent
-	update_game_level();  //checks which level you are in (can be improved in the future)
 #endregion
 
 
 if (live_call()) return live_result;
 #region player setup
+	layer_background_blend(layer_background_get_id(layer_get_id("Background")), level_info.tint);
 	Deck_Init();
 	
 #endregion
 
 //determine the opponent (move this later if required)
 #region opponent setup
-	deck_init_opponent(10); //create space for 10 cards by creating default values (weak monster)
-	
-	switch (game_level) {
-    case 1:
-        deck_construct_lvl1();
-        break;
-    case 2:
-        deck_construct_lvl2();
-		 coins_player = 10; 
-        break;
-    case 3:
-        deck_construct_lvl3();
-		coins_player = 10; 
-		
-        break;
-    default:
-        show_error("Invalid game level", true);
-        break;
-}
+	opponent_card_set = deck_from_list(level_info.enemy_deck);
 	deck_shuffle(opponent_card_set); //shuffle
 	
 	

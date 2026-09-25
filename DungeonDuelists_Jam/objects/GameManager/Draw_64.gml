@@ -123,6 +123,8 @@ if winner = 0 {
 	//draw_text(_x,_y+20,attack_turn); 
 
 	draw_rectangle(_x-m,_y+20,_x+m,_y+21,0);
+	draw_set_font(GameManager.font);
+	draw_text_transformed(_x,_y+26,"Level " + string(global.level + 1) + ": " + level_info.name,RES_T,RES_T,0);
 	//draw_sprite_ext(button_primary_empty,0,_x,_y+8,RES,RES,0,c_white,1);
 }
 

@@ -13,6 +13,7 @@ switch GameManager.winner {
 		break;
 		case (1): {
 			text = "You Win!";
+			if global.level + 1 >= level_count() text = "You beat every level!";
 		}
 		break;
 		case (2): {

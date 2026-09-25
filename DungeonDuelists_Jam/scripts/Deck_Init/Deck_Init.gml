@@ -3,10 +3,7 @@
 /// @description Generates the player deck
 function Deck_Init(){
 
-player_card_set = array_create_ext(10, function() { return new Monster_weak();});
-
-if (game_level == 2) deck_constructor_player_medium(); //build the level deck before drawing the hand
-else deck_constructor_player_basic(); 
+player_card_set = deck_from_list(GameManager.level_info.player_deck); //build the level deck before drawing the hand
 deck_shuffle(player_card_set); 
 Start_from_deck(3); //picks 3 first cards and makes them "in hand" 
 init_card_slots(); 

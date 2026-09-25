@@ -11,7 +11,7 @@ y = room_height/2-50;
 with(instance_create_depth(x,y+30,0,oButton))
 	btn_type = 3; //restart button
 
-if room_next(room) != -1 { //if there's a next room, create this button too
+if GameManager.winner = 1 && global.level + 1 < level_count() { //if you won and there's a next level, create this button too
 	with(instance_create_depth(x,y+50,0,oButton))
 		btn_type = 4;
 }

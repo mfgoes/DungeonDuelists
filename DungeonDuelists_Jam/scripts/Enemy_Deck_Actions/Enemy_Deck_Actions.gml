@@ -137,7 +137,7 @@ function calculate_remaining_enemies() {
 function calculate_total_enemies() {
 	var total_enemies = 0; 
 	 for (var h = 0; h < array_length(opponent_card_set); h++) {
-        if opponent_card_set[h].card_type == "monster" {
+        if opponent_card_set[h].card_type != "spell" { //spiky + unique are monsters too
             total_enemies += 1; 
         }
     }

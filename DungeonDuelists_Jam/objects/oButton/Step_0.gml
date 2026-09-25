@@ -49,8 +49,10 @@ if (position_meeting(mouse_x, mouse_y, id)) && mouse_check_button_pressed(mb_lef
 		}
 		break;
 		case (4): {	//go to next level
-			if room_next(room) != -1
-			room_goto_next();
+			if global.level + 1 < level_count() {
+				global.level++;
+				room_restart();
+			}
 			//with(GameManager) 
 			//	spawn_opponent_monster(); 
 		}

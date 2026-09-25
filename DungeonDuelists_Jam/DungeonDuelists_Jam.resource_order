@@ -28,6 +28,7 @@
     {"name":"Bag_02","order":5,"path":"sounds/Bag_02/Bag_02.yy",},
     {"name":"GMLive_seekSetOp","order":6,"path":"scripts/GMLive_seekSetOp/GMLive_seekSetOp.yy",},
     {"name":"Deck_Init","order":2,"path":"scripts/Deck_Init/Deck_Init.yy",},
+    {"name":"Level_Data","order":3,"path":"scripts/Level_Data/Level_Data.yy",},
     {"name":"GMLive_thread","order":4,"path":"scripts/GMLive_thread/GMLive_thread.yy",},
     {"name":"card","order":3,"path":"sprites/card/card.yy",},
     {"name":"Punch_1_4","order":2,"path":"sounds/Punch_1_4/Punch_1_4.yy",},

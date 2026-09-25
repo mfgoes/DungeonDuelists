@@ -1,17 +1,4 @@
 
-/// @desc opponent deck
-/// @param {integer} amount of cards
-function deck_init_opponent(argument0) {
-	amount = argument0;
-	opponent_card_set = array_create_ext(amount, function() { return new Monster_weak();});
-	for (var h = 0; h < 3; h++) {
-		with (opponent_card_set[h]) {
-			Monster_weak();
-		}
-	}
-}
-
-
 function attack_player_init(){
 	
 	//1: attack if possible
