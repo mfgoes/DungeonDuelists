@@ -6,6 +6,7 @@
 /// player_deck / enemy_deck: lists of card constructors (see Card_Constructors)
 function level_data() {
 	var _basic = [Monster_2_2, Monster_1_3, Monster_3_5, Monster_3_2, Monster_1_3, Monster_3_3, Monster_3_2, Monster_3_3, Monster_Spiky, Monster_unique];
+	var _advanced = [Monster_Imp, Monster_Imp, Monster_Chick, Monster_Chick, Monster_3_3, Monster_3_5, Monster_3_2, Monster_Spiky, Monster_5_5, Monster_unique];
 	var _medium = [Monster_1_3, Monster_2_2, Monster_2_2, Monster_2_2, Monster_1_3, Monster_1_3, Monster_3_2, Monster_3_2, Monster_3_3, Monster_unique];
 
 	return [
@@ -49,13 +50,45 @@ function level_data() {
 			player_deck: _basic,
 			enemy_deck: [Monster_3_3, Monster_3_3, Monster_5_5, Monster_5_5, Monster_3_5, Monster_3_5, Monster_5_5, Monster_Spiky],
 		},
-		{ //final level: long fight
+		{ //long fight
 			name: "Phoenix Throne",
 			ai: "weakest",
 			tint: make_colour_rgb(205, 165, 235),
 			coins: 10,
 			player_deck: _basic,
 			enemy_deck: [Monster_3_2, Monster_3_2, Monster_3_3, Monster_3_3, Monster_3_5, Monster_3_5, Monster_Spiky, Monster_Spiky, Monster_5_5, Monster_5_5, Monster_unique, Monster_unique],
+		},
+		{ //thorns everywhere: attacking hurts
+			name: "Bramble Hollow",
+			ai: "random",
+			tint: make_colour_rgb(140, 190, 130),
+			coins: 10,
+			player_deck: _advanced,
+			enemy_deck: [Monster_Imp, Monster_Imp, Monster_Imp, Monster_Imp, Monster_Spiky, Monster_Spiky, Monster_2_2, Monster_2_2, Monster_3_2, Monster_3_2],
+		},
+		{ //enemies keep coming back
+			name: "Ashen Nest",
+			ai: "strongest",
+			tint: make_colour_rgb(255, 150, 110),
+			coins: 10,
+			player_deck: _advanced,
+			enemy_deck: [Monster_Chick, Monster_Chick, Monster_Chick, Monster_Chick, Monster_unique, Monster_unique, Monster_3_3, Monster_3_3, Monster_3_2, Monster_3_2],
+		},
+		{ //big deck of mid monsters: long grind
+			name: "Revenant Crypt",
+			ai: "weakest",
+			tint: make_colour_rgb(130, 130, 180),
+			coins: 10,
+			player_deck: _advanced,
+			enemy_deck: [Monster_3_2, Monster_3_2, Monster_3_2, Monster_3_3, Monster_3_3, Monster_3_3, Monster_1_3, Monster_1_3, Monster_3_5, Monster_3_5, Monster_Imp, Monster_Chick],
+		},
+		{ //final level
+			name: "Dragon King",
+			ai: "strongest",
+			tint: make_colour_rgb(230, 120, 120),
+			coins: 10,
+			player_deck: _advanced,
+			enemy_deck: [Monster_5_5, Monster_5_5, Monster_5_5, Monster_unique, Monster_unique, Monster_Spiky, Monster_Spiky, Monster_3_5, Monster_3_5, Monster_3_3, Monster_3_3, Monster_Chick],
 		},
 	];
 }

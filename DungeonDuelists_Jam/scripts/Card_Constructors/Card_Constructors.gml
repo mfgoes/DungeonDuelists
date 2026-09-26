@@ -101,5 +101,25 @@
     //special_ability = "When this card is defeated, it has a 50% chance to revive with 2 defense points."
 	}
 
+	function Monster_Imp() : Monster_card() constructor { //cheap thorns
+		card_type = "spiky"
+		name =  "Bramble Imp"
+		ability = "Thorns"
+		attack = 1
+		defense = 3
+		hp_max = defense
+		cost = 1
+	}
+
+	function Monster_Chick() : Monster_card() constructor { //cheap rebirth
+		card_type = "unique"
+		name =  "Ember Chick"
+		ability = "Rebirth"
+		attack = 2
+		defense = 2
+		hp_max = defense
+		cost = 2
+	}
+
 #endregion
 
