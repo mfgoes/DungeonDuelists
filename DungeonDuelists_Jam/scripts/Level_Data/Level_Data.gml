@@ -1,6 +1,7 @@
 /// @desc all levels in play order. to add a level, add a new struct to the list.
 /// name: shown at the top of the screen
 /// tint: background colour blend
+/// bg_sprite: (optional) background sprite for this level, e.g. bg_sprite: spr_bg_forest
 /// coins: starting mana for the player
 /// ai: enemy tactic. "weakest" (hits lowest hp), "strongest" (hits highest attack) or "random"
 /// player_deck / enemy_deck: lists of card constructors (see Card_Constructors)

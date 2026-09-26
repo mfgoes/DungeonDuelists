@@ -42,6 +42,7 @@ function spawn_opponent_monster() {
 			 if (first_available >= 0) && cards_on_field < 8 { //don't spawn if more than 3
 		        var dd = instance_create_depth(_x, _y, depth-100, oMonsterEnemy);
 				dd.card_number = first_available;
+				monster_apply_look(dd, opponent_card_set[first_available]);
 				dd.spawn_number = spawn_number; 
 		        opponent_card_set[first_available].state = card_state.on_field;
 			} else {

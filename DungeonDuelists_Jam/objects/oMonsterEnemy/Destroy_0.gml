@@ -9,5 +9,6 @@ with (GameManager) {
 
 dd = instance_create_depth(x,y,depth,oMonsterDeadAnim);
 dd.sprite_index = sprite_index;
-dd.image_index = image_index; 
+dd.image_index = image_index;
+dd.image_blend = image_blend; 
 

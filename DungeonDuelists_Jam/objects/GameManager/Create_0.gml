@@ -54,7 +54,9 @@
 
 if (live_call()) return live_result;
 #region player setup
-	layer_background_blend(layer_background_get_id(layer_get_id("Background")), level_info.tint);
+	var _bg = layer_background_get_id(layer_get_id("Background"));
+	if (variable_struct_exists(level_info, "bg_sprite")) layer_background_sprite(_bg, level_info.bg_sprite);
+	layer_background_blend(_bg, level_info.tint);
 	Deck_Init();
 	
 #endregion

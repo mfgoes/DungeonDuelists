@@ -27,8 +27,18 @@
 	
 		dd = instance_create_depth(_x,_y,depth-10,oMonsterPlayer); 
 		dd.card_number = other.card_number; 
+		monster_apply_look(dd, player_card_set[other.card_number]);
 		dd.spawn_number = spawn_number; 
 	}
 	}
 #endregion
 
+
+
+/// @desc sets a monster's sprite and tint from its card
+/// @param {id} inst
+/// @param {struct} card
+function monster_apply_look(_inst, _card) {
+	if (_card.sprite != -1) _inst.sprite_index = _card.sprite;
+	_inst.image_blend = _card.tint;
+}
