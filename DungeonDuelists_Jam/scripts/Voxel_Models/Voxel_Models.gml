@@ -1,12 +1,13 @@
 // Proof of concept: retro 3D monsters built from 2D pixel art.
-// Every filled pixel becomes a column of voxels. Columns get thicker towards the middle
-// of the shape, so flat pixel art turns into a chunky, rounded model.
+// Every filled pixel becomes a column of voxels. Each part of the shape gets about as thick
+// as it is wide, so flat pixel art turns into a chunky voxel model (thin legs stay thin, bodies get round).
 // Models render into a small surface at room resolution, so they stay pixel-sharp.
 // Toggle between 3D and 2D in game with the "3" key.
 
 #macro VOXEL_SIZE 2 //room pixels per voxel
-#macro VOXEL_MAX_DEPTH 4 //max thickness (in voxels) from the front to the middle
-#macro VOXEL_PITCH 20 //tilt so the top of the model shows. flip the sign if you see the bottom instead
+#macro VOXEL_MAX_DEPTH 6 //max half thickness in voxels
+#macro VOXEL_YAW 30 //default turn so the side of the model shows
+#macro VOXEL_PITCH 25 //tilt so the top of the model shows. flip the sign if you see the bottom instead
 #macro VOXEL_SURF_SIZE 64 //render surface size in room pixels
 
 /// @desc pixel-art models. '.' = empty, other letters = palette colours. art faces right.
@@ -341,19 +342,26 @@ function voxel_model_from_sprite(_spr) {
 
 /// @desc turns a grid of colours (-1 = empty) into a frozen vertex buffer
 function voxel_build(_cols, _w, _h) {
-	//thickness: distance to the nearest empty pixel, capped
+	//distance to the nearest empty pixel (8 neighbours, diagonals cost more)
 	var _d = array_create(_w * _h, 0);
 	for (var i = 0; i < _w * _h; i++) if (_cols[i] != -1) _d[i] = 99;
-	repeat (VOXEL_MAX_DEPTH) {
+	repeat (VOXEL_MAX_DEPTH + 2) {
 		for (var _y = 0; _y < _h; _y++) {
 			for (var _x = 0; _x < _w; _x++) {
 				var _i = _y * _w + _x;
 				if (_d[_i] == 0) continue;
-				_d[_i] = min(_d[_i], VOXEL_MAX_DEPTH,
-					voxel_depth_at(_d, _w, _h, _x - 1, _y) + 1, voxel_depth_at(_d, _w, _h, _x + 1, _y) + 1,
-					voxel_depth_at(_d, _w, _h, _x, _y - 1) + 1, voxel_depth_at(_d, _w, _h, _x, _y + 1) + 1);
+				_d[_i] = min(_d[_i],
+					voxel_value_at(_d, _w, _h, _x - 1, _y) + 1, voxel_value_at(_d, _w, _h, _x + 1, _y) + 1,
+					voxel_value_at(_d, _w, _h, _x, _y - 1) + 1, voxel_value_at(_d, _w, _h, _x, _y + 1) + 1,
+					voxel_value_at(_d, _w, _h, _x - 1, _y - 1) + 1.41, voxel_value_at(_d, _w, _h, _x + 1, _y - 1) + 1.41,
+					voxel_value_at(_d, _w, _h, _x - 1, _y + 1) + 1.41, voxel_value_at(_d, _w, _h, _x + 1, _y + 1) + 1.41);
 			}
 		}
+	}
+	//thickness in whole voxels (always odd so it stays centred). grows quickly at the edges, then levels off
+	var _t = array_create(_w * _h, 0);
+	for (var i = 0; i < _w * _h; i++) {
+		if (_d[i] > 0) _t[i] = min(VOXEL_MAX_DEPTH, round(1.7 * sqrt(_d[i]))) * 2 - 1;
 	}
 
 	if (!variable_global_exists("voxel_format")) {
@@ -372,17 +380,18 @@ function voxel_build(_cols, _w, _h) {
 			var _i = _y * _w + _x;
 			var _c = _cols[_i];
 			if (_c == -1) continue;
-			var _hd = _d[_i];
+			var _n = _t[_i];
+			var _ck = ((_x + _y) mod 2 == 0) ? 1 : 0.94; //subtle checker so single voxels read
 			var _x1 = (_x - _w / 2) * _s, _x2 = _x1 + _s;
 			var _y1 = (_y - _h / 2) * _s, _y2 = _y1 + _s;
-			var _z1 = -_hd * _s / 2, _z2 = _hd * _s / 2;
-			voxel_quad(_vb, _x1, _y1, _z1, _x2, _y1, _z1, _x2, _y2, _z1, _x1, _y2, _z1, voxel_shade(_c, 1)); //front
-			voxel_quad(_vb, _x1, _y1, _z2, _x2, _y1, _z2, _x2, _y2, _z2, _x1, _y2, _z2, voxel_shade(_c, 0.6)); //back
-			//sides: only the part that sticks out past the neighbour
-			voxel_side(_vb, 0, _x1, _y1, _x2, _y2, _hd, voxel_depth_at(_d, _w, _h, _x - 1, _y), voxel_shade(_c, 0.88));
-			voxel_side(_vb, 1, _x1, _y1, _x2, _y2, _hd, voxel_depth_at(_d, _w, _h, _x + 1, _y), voxel_shade(_c, 0.8));
-			voxel_side(_vb, 2, _x1, _y1, _x2, _y2, _hd, voxel_depth_at(_d, _w, _h, _x, _y - 1), voxel_shade(_c, 1.12));
-			voxel_side(_vb, 3, _x1, _y1, _x2, _y2, _hd, voxel_depth_at(_d, _w, _h, _x, _y + 1), voxel_shade(_c, 0.6));
+			var _z1 = -_n * _s / 2, _z2 = _n * _s / 2;
+			voxel_quad(_vb, _x1, _y1, _z1, _x2, _y1, _z1, _x2, _y2, _z1, _x1, _y2, _z1, voxel_shade(_c, _ck)); //front
+			voxel_quad(_vb, _x1, _y1, _z2, _x2, _y1, _z2, _x2, _y2, _z2, _x1, _y2, _z2, voxel_shade(_c, 0.6 * _ck)); //back
+			//sides: only the voxels that stick out past the neighbour
+			voxel_side(_vb, 0, _x1, _y1, _x2, _y2, _n, voxel_value_at(_t, _w, _h, _x - 1, _y), _c, 0.88, _x + _y);
+			voxel_side(_vb, 1, _x1, _y1, _x2, _y2, _n, voxel_value_at(_t, _w, _h, _x + 1, _y), _c, 0.8, _x + _y);
+			voxel_side(_vb, 2, _x1, _y1, _x2, _y2, _n, voxel_value_at(_t, _w, _h, _x, _y - 1), _c, 1.12, _x + _y);
+			voxel_side(_vb, 3, _x1, _y1, _x2, _y2, _n, voxel_value_at(_t, _w, _h, _x, _y + 1), _c, 0.6, _x + _y);
 		}
 	}
 	vertex_end(_vb);
@@ -390,23 +399,26 @@ function voxel_build(_cols, _w, _h) {
 	return _vb;
 }
 
-function voxel_depth_at(_d, _w, _h, _x, _y) {
+function voxel_value_at(_arr, _w, _h, _x, _y) {
 	if (_x < 0 || _y < 0 || _x >= _w || _y >= _h) return 0;
-	return _d[_y * _w + _x];
+	return _arr[_y * _w + _x];
 }
 
-/// @desc face: 0 left, 1 right, 2 top, 3 bottom
-function voxel_side(_vb, _face, _x1, _y1, _x2, _y2, _hd, _nd, _col) {
-	if (_nd >= _hd) return;
-	var _s = VOXEL_SIZE / 2;
-	for (var k = 0; k < 2; k++) {
-		var _za = (k == 0) ? -_hd * _s : _nd * _s;
-		var _zb = (k == 0) ? -_nd * _s : _hd * _s;
+/// @desc one quad per exposed voxel on a side. face: 0 left, 1 right, 2 top, 3 bottom
+/// @param {real} n thickness of this column, m thickness of the neighbour (both in voxels)
+function voxel_side(_vb, _face, _x1, _y1, _x2, _y2, _n, _m, _col, _light, _parity) {
+	if (_m >= _n) return;
+	var _s = VOXEL_SIZE;
+	for (var k = 0; k < _n; k++) {
+		var _zc = -_n / 2 + k;
+		if (_zc >= -_m / 2 && _zc < _m / 2) continue; //covered by the neighbour
+		var _za = _zc * _s, _zb = (_zc + 1) * _s;
+		var _c = voxel_shade(_col, _light * (((_parity + k) mod 2 == 0) ? 1 : 0.94));
 		switch (_face) {
-			case 0: voxel_quad(_vb, _x1, _y1, _za, _x1, _y2, _za, _x1, _y2, _zb, _x1, _y1, _zb, _col); break;
-			case 1: voxel_quad(_vb, _x2, _y1, _za, _x2, _y2, _za, _x2, _y2, _zb, _x2, _y1, _zb, _col); break;
-			case 2: voxel_quad(_vb, _x1, _y1, _za, _x2, _y1, _za, _x2, _y1, _zb, _x1, _y1, _zb, _col); break;
-			case 3: voxel_quad(_vb, _x1, _y2, _za, _x2, _y2, _za, _x2, _y2, _zb, _x1, _y2, _zb, _col); break;
+			case 0: voxel_quad(_vb, _x1, _y1, _za, _x1, _y2, _za, _x1, _y2, _zb, _x1, _y1, _zb, _c); break;
+			case 1: voxel_quad(_vb, _x2, _y1, _za, _x2, _y2, _za, _x2, _y2, _zb, _x2, _y1, _zb, _c); break;
+			case 2: voxel_quad(_vb, _x1, _y1, _za, _x2, _y1, _za, _x2, _y1, _zb, _x1, _y1, _zb, _c); break;
+			case 3: voxel_quad(_vb, _x1, _y2, _za, _x2, _y2, _za, _x2, _y2, _zb, _x1, _y2, _zb, _c); break;
 		}
 	}
 }

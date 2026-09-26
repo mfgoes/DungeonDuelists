@@ -1,7 +1,7 @@
 /// @description Draw self + flash
 if (global.use_3d) {
 	var _card = GameManager.opponent_card_set[card_number];
-	voxel_draw(_card.model, x, y, true, sin(current_time / 700 + model_phase) * 20, image_alpha, flash_timer / flash_duration);
+	voxel_draw(_card.model, x, y, true, VOXEL_YAW + sin(current_time / 700 + model_phase) * 12, image_alpha, flash_timer / flash_duration);
 	exit;
 }
 
