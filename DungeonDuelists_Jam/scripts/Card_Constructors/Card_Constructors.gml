@@ -32,6 +32,7 @@
 	function Monster_2_2()  : Monster_card() constructor {
 		card_type = "monster"
 		name =  "Twiggy Forager"
+		model = "twig"
 		attack = 2
 		defense = 3
 		hp_max = defense 
@@ -40,6 +41,7 @@
 	function Monster_1_3()  : Monster_card() constructor {
 		card_type = "monster"
 		name =  "Mirkwood Weaver"
+		model = "spider"
 		attack = 1
 		defense = 4
 		hp_max = defense
@@ -49,6 +51,7 @@
 	function Monster_3_2()  : Monster_card() constructor {
 		card_type = "monster"
 		name =  "Oathbreaker"
+		model = "knight"
 		attack = 3
 		defense = 3
 		hp_max = defense 
@@ -58,6 +61,7 @@
 	function Monster_3_3()  : Monster_card() constructor {
 		card_type = "monster"
 		name =  "Shade"
+		model = "ghost"
 		attack = 3
 		defense = 4
 		hp_max = defense 
@@ -67,6 +71,7 @@
 	function Monster_3_5()  : Monster_card() constructor {
 		card_type = "monster"
 		name =  "Howling Moonbeast"
+		model = "wolf"
 		attack = 3
 		defense = 6
 		hp_max = defense 
@@ -76,6 +81,7 @@
 	function Monster_5_5() : Monster_card() constructor {
 		card_type = "monster"
 		name =  "Fire Drake"
+		model = "drake"
 		tint = make_colour_rgb(255, 140, 140)
 		attack = 5
 		defense = 7
@@ -113,7 +119,7 @@
 	function Monster_Imp() : Monster_card() constructor { //cheap thorns
 		card_type = "spiky"
 		name =  "Bramble Imp"
-		model = "mumak"
+		model = "imp"
 		tint = make_colour_rgb(170, 230, 150)
 		ability = "Thorns"
 		attack = 1
@@ -125,7 +131,7 @@
 	function Monster_Chick() : Monster_card() constructor { //cheap rebirth
 		card_type = "unique"
 		name =  "Ember Chick"
-		model = "phoenix"
+		model = "chick"
 		tint = make_colour_rgb(255, 190, 120)
 		ability = "Rebirth"
 		attack = 2
