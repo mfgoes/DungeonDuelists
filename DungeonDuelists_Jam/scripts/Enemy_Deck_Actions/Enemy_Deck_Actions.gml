@@ -83,17 +83,9 @@ function attack_target_player() {
 	var cards_total = array_length(GameManager.player_card_set); 
 	var cards_left = cards_total - destroyed;
 	
-	 var target = noone;
+	 var target = enemy_pick_target(GameManager.level_info.ai);
 	 var card_opponent = -1;
-	 var lowest_defense = 99999;
-		
-	with (oMonsterPlayer) {
-        if (GameManager.player_card_set[card_number].defense < lowest_defense) {
-            lowest_defense = GameManager.player_card_set[card_number].defense;
-            target = id;
-            card_opponent = card_number;
-        }
-    }
+	 if (target != noone) card_opponent = target.card_number;
 	
 	// Check if a target was found
     if (target != noone) {
@@ -173,4 +165,24 @@ function find_lowest_defense_player_monster() {
 
 	    return lowest_defense_player_monster;
 	}
+}
+
+
+/// @desc picks which player monster the enemy attacks, based on the level's tactic
+/// @param {string} ai "weakest" (lowest hp), "strongest" (highest attack) or "random"
+function enemy_pick_target(_ai) {
+	if (!instance_exists(oMonsterPlayer)) return noone;
+	if (_ai == "random") return instance_find(oMonsterPlayer, irandom(instance_number(oMonsterPlayer) - 1));
+
+	var _target = noone;
+	var _best = -1;
+	with (oMonsterPlayer) {
+		var _card = GameManager.player_card_set[card_number];
+		var _score = (_ai == "strongest") ? _card.attack : 99999 - _card.defense; //higher score = better target
+		if (_score > _best) {
+			_best = _score;
+			_target = id;
+		}
+	}
+	return _target;
 }

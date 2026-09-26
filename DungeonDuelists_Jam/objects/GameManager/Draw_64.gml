@@ -125,6 +125,12 @@ if winner = 0 {
 	draw_rectangle(_x-m,_y+20,_x+m,_y+21,0);
 	draw_set_font(GameManager.font);
 	draw_text_transformed(_x,_y+26,"Level " + string(global.level + 1) + ": " + level_info.name,RES_T,RES_T,0);
+	var _tactic = "Enemies attack your weakest monster";
+	if level_info.ai = "strongest" _tactic = "Enemies attack your strongest monster";
+	if level_info.ai = "random" _tactic = "Enemies attack at random";
+	draw_set_alpha(0.7);
+	draw_text_transformed(_x,_y+42,_tactic,RES_T,RES_T,0);
+	draw_set_alpha(1);
 	//draw_sprite_ext(button_primary_empty,0,_x,_y+8,RES,RES,0,c_white,1);
 }
 

@@ -2,6 +2,7 @@
 /// name: shown at the top of the screen
 /// tint: background colour blend
 /// coins: starting mana for the player
+/// ai: enemy tactic. "weakest" (hits lowest hp), "strongest" (hits highest attack) or "random"
 /// player_deck / enemy_deck: lists of card constructors (see Card_Constructors)
 function level_data() {
 	var _basic = [Monster_2_2, Monster_1_3, Monster_3_5, Monster_3_2, Monster_1_3, Monster_3_3, Monster_3_2, Monster_3_3, Monster_Spiky, Monster_unique];
@@ -10,6 +11,7 @@ function level_data() {
 	return [
 		{ //forest, weakest monsters to learn the game
 			name: "Fledgling Foes",
+			ai: "random",
 			tint: c_white,
 			coins: 7,
 			player_deck: _basic,
@@ -17,6 +19,7 @@ function level_data() {
 		},
 		{ //graveyard
 			name: "Shadowbound Showdown",
+			ai: "weakest",
 			tint: make_colour_rgb(150, 160, 210),
 			coins: 10,
 			player_deck: _medium,
@@ -24,6 +27,7 @@ function level_data() {
 		},
 		{ //volcano
 			name: "Mythic Menace",
+			ai: "strongest",
 			tint: make_colour_rgb(255, 170, 140),
 			coins: 10,
 			player_deck: _basic,
@@ -31,6 +35,7 @@ function level_data() {
 		},
 		{ //high defense wall: few big hits needed
 			name: "Thornwall Pass",
+			ai: "weakest",
 			tint: make_colour_rgb(170, 220, 160),
 			coins: 10,
 			player_deck: _medium,
@@ -38,6 +43,7 @@ function level_data() {
 		},
 		{ //small but very strong deck
 			name: "Drake's Roost",
+			ai: "strongest",
 			tint: make_colour_rgb(255, 205, 120),
 			coins: 10,
 			player_deck: _basic,
@@ -45,6 +51,7 @@ function level_data() {
 		},
 		{ //final level: long fight
 			name: "Phoenix Throne",
+			ai: "weakest",
 			tint: make_colour_rgb(205, 165, 235),
 			coins: 10,
 			player_deck: _basic,
