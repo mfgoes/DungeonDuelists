@@ -18,6 +18,8 @@ if instance_exists(GameManager)
 	if (global.debugmode) 
 		draw_text(x*RES,(y)*RES,"no: " + string(card_number) + ", " + string(spawn_number));
 	draw_text(x*RES,(y+26)*RES,"hp: " + string(def) + "/" + string(hp_max));
+	var ability = GameManager.player_card_set[card_number].ability;
+	if ability != "" draw_text(x*RES,(y+36)*RES,ability);
 
 }
 

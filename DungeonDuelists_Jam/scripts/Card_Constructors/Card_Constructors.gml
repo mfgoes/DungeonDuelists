@@ -10,6 +10,8 @@
 		hp_max = defense 
 		state = card_state.in_deck
 		identifier = 0; 
+		ability = "" //short ability name shown on the card
+		revived = false //used by Rebirth
 	}
 
 	//monster types (inherit parent monster card) 
@@ -81,6 +83,7 @@
 	function Monster_Spiky() : Monster_card() constructor {
 		card_type = "spiky"
 		name =  "Thorned Mumak" //Mûmak
+		ability = "Thorns" //attackers take 1 damage
 		attack = 2
 		defense = 8
 		hp_max = defense 
@@ -90,6 +93,7 @@
 	function Monster_unique() : Monster_card() constructor {
     card_type = "unique"
     name =  "Blazing Phoenix"
+	ability = "Rebirth" //comes back once with 2 hp
     attack = 4
     defense = 6
     hp_max = defense 

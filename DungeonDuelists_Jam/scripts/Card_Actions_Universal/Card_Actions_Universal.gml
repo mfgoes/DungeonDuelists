@@ -228,3 +228,37 @@ function Start_from_deck(argument0) {
 function flash_monster(monster) {
     monster.flash_timer = monster.flash_duration;
 }
+
+
+#region card abilities
+	/// @desc damages a card. returns true if the monster should be destroyed.
+	/// "unique" cards (Rebirth) come back once with 2 hp.
+	/// @param {struct} card
+	/// @param {real} amount
+	/// @param {id} inst the monster instance of this card (for the toast position)
+	function card_take_damage(_card, _amount, _inst) {
+		_card.defense -= _amount;
+		if (_card.defense <= 0 && _card.card_type == "unique" && !_card.revived) {
+			_card.revived = true;
+			_card.defense = 2;
+			show_toast(_inst.x, _inst.y - 20, "rebirth!");
+			return false;
+		}
+		return _card.defense <= 0;
+	}
+
+	/// @desc "spiky" cards (Thorns) deal 1 damage back to their attacker. call from the attacking monster.
+	/// @param {struct} target_card
+	/// @param {struct} attacker_card
+	function card_thorns(_target_card, _attacker_card) {
+		if (_target_card.card_type != "spiky") return;
+		show_toast(x, y - 20, "thorns -1");
+		if card_take_damage(_attacker_card, 1, id) instance_destroy();
+	}
+
+	/// @desc short text popup that fades out
+	function show_toast(_x, _y, _str) {
+		var _toast = instance_create_depth(_x, _y, 0, oUI_CardToast);
+		_toast.str = _str;
+	}
+#endregion

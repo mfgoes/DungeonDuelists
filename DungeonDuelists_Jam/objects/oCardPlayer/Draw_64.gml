@@ -19,6 +19,8 @@ if instance_exists(GameManager)
 	draw_text_transformed(x*RES,(y-30)*RES,"atk: " + string(atk),RES_T,RES_T,0);
 	draw_text_transformed(x*RES,(y+26)*RES,"HP: " + string(def),RES_T,RES_T,0);
 	draw_text_transformed(x*RES,(y+6)*RES,"$: " + string(cost),RES_T,RES_T,0);
+	var ability = GameManager.player_card_set[card_number].ability;
+	if ability != "" draw_text_transformed(x*RES,(y+16)*RES,ability,RES_T,RES_T,0);
 }
 
 //reset text settings

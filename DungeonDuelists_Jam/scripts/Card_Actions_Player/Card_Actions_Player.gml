@@ -151,16 +151,13 @@ function attack_target() {
     var card_opponent = target.card_number;
     var card_plr = card_number;
 
-    GameManager.opponent_card_set[card_opponent].defense -= GameManager.player_card_set[card_plr].attack;
+	var _target_card = GameManager.opponent_card_set[card_opponent];
+	var _my_card = GameManager.player_card_set[card_plr];
 	flash_monster(target); // Call the flash_monster function when the target is hit
-    if (GameManager.opponent_card_set[card_opponent].defense <= 0) {
-        with (target) {
-            if (card_opponent == card_number) {
-				flash_monster(target); 
-                instance_destroy();
-            }
-        }
-    }
+	if card_take_damage(_target_card, _my_card.attack, target) {
+		with (target) instance_destroy();
+	}
+	card_thorns(_target_card, _my_card);
 }
 	
 #endregion

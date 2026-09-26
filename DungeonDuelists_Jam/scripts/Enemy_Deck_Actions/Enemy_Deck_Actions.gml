@@ -92,15 +92,13 @@ function attack_target_player() {
         // Attack monsters
         var card_plr = card_number;
 
-        GameManager.player_card_set[card_opponent].defense -= GameManager.opponent_card_set[card_plr].attack;
-        flash_monster(target);
-        if (GameManager.player_card_set[card_opponent].defense <= 0) {
-            with (target) {
-                if (card_opponent == card_number) {
-                    instance_destroy();
-                }
-            }
-        }
+		var _target_card = GameManager.player_card_set[card_opponent];
+		var _my_card = GameManager.opponent_card_set[card_plr];
+		flash_monster(target);
+		if card_take_damage(_target_card, _my_card.attack, target) {
+			with (target) instance_destroy();
+		}
+		card_thorns(_target_card, _my_card);
         // If less than zero, do difference damage to opponent directly
     } else {
         // Attack player directly

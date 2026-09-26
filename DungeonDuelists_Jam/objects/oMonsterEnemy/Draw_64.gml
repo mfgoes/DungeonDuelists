@@ -18,6 +18,8 @@ if instance_exists(GameManager)
 		draw_text(x*RES,y*RES,card_id);
 	draw_text_transformed(x*RES,(y-20)*RES,"atk: " + string(atk),RES_T,RES_T,0);
 	draw_text_transformed(x*RES,(y+26)*RES,"hp: " + string(def) + "/" + string(hp_max),RES_T,RES_T,0);
+	var ability = GameManager.opponent_card_set[card_number].ability;
+	if ability != "" draw_text_transformed(x*RES,(y+36)*RES,ability,RES_T,RES_T,0);
 
 }
 
