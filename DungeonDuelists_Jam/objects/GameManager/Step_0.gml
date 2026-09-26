@@ -17,6 +17,9 @@
 		global.level = 0; //back to the first level
 		game_restart(); 	
 	}
+	if (keyboard_check_pressed(ord("3"))) {
+		global.use_3d = !global.use_3d; //compare 3D and 2D monsters
+	}
 	if (keyboard_check_pressed(ord("9"))) || (keyboard_check_pressed(ord("1"))) {
 		global.debugmode = !global.debugmode; 
 	}

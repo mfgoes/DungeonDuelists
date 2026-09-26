@@ -1,4 +1,10 @@
 /// @description Draw self + flash
+if (global.use_3d) {
+	var _card = GameManager.player_card_set[card_number];
+	voxel_draw(_card.model, x, y, false, sin(current_time / 700 + model_phase) * 20, image_alpha, flash_timer / flash_duration);
+	exit;
+}
+
 // If the flash_timer is greater than 0, use the white blending mode
 if (flash_timer > 0) {
     draw_self();

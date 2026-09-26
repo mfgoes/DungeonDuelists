@@ -6,6 +6,7 @@
     global.RES_GUI = 2; //text resolution (may change in settings later)
 	global.RES_TEXT = 0.4; //downscaled for font resolution purposes. 0.5 = normal size. 1 = twice as much.
     global.debugmode = false;
+	if (!variable_global_exists("use_3d")) global.use_3d = true; //3D voxel monsters (proof of concept). toggle with 3
 	font_setup(); //adds a font externally
     #macro TILESIZE 16
 	// Card Visual Variables
